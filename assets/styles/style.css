@@ -1,0 +1,126 @@
+@font-face {
+    font-family: Montserrat;
+    src: url("../fonts/Montserrat-Medium.ttf");
+  }
+  .t-montserrat{
+    font-family: Montserrat;
+  }
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrat;
+}
+.login-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(-30deg, #03a9f4 0%, #3a78b7 50%, #262626 50%, #607d8b 100%);
+
+}
+.loginBox{
+    position: relative;
+    padding: 50px;
+    max-width: 360px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    box-shadow: 0 5px 35px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease-in-out;
+    animation: fadeIn 1s;
+}
+.loginBox:hover{
+    backdrop-filter: blur(30px);
+}
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        right: 10%;
+    }
+    to{
+        opacity: 1;
+        right: 0%;
+    }
+}
+.loginBox::after{
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top:0px;
+    bottom: 0px;
+    border-radius: 5px;
+    pointer-events: none;
+    background:linear-gradient(to bottom,  rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 15%, transparent 50%, transparent 85%, rgba(255, 255, 255, 0.3) 100%);
+}
+.loginBox .form{
+    position: relative;
+    width: 100%;
+}
+.loginBox .form h2{
+    color:rgb(255, 255, 255);
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+.loginBox .form .inputBox{
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.loginBox .form .inputBox input{
+    width: 100%;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    padding: 8px 10px;
+    padding-left: 34px;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.2);
+}
+.loginBox .form .inputBox input::placeholder{
+    color: rgba(255, 255, 255, 0.5);
+}
+.loginBox .form .inputBox i{
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    font-size: 18px;
+    color: white;
+}
+.loginBox .form .inputBox input[type="submit"]{
+    padding: 8px 10px;
+    background: #ffffff;
+    color: #111;
+    max-width: 100px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    box-shadow: none;
+    cursor: pointer;
+}
+.loginBox .form a{
+    color: white;
+    font-weight: 300;
+    font-size: 15px;
+    margin-top: 5px;
+}
+.ml-auto{
+    margin-left: auto !important;
+}
+.nav-bar-icon{
+    font-size: 20px;
+    color:rgb(255, 255, 255);
+}
+.w-70{
+    width:72%;
+}
+.margin-b0{
+    margin-bottom: 0;
+}
