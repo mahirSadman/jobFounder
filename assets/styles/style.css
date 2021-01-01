@@ -360,3 +360,6 @@ a{
 .headerTextMiddle{
     margin-top: 6px;
 }
+.formHeading{
+    margin: 20px auto;
+}
