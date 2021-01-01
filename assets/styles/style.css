@@ -310,3 +310,53 @@
     margin-left: 2px;
     margin-right: 2px;
 }
+.cardBodyP{
+    font-size: 15px;
+}
+.card-body{
+    padding: 10px;
+}
+p{
+    margin-bottom: 0;
+}
+.JobsNearYou{
+    margin-top: 20px;
+}
+.form-group{
+    margin-bottom: 10px;
+}
+.form-group label{
+    margin-bottom: 1px;
+}
+a{
+    color: black;
+}
+.companiesCompanyRole{
+    font-size: 10px;
+    color: rgb(78, 78, 78);
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.list-group-item{
+    padding-left: 0;
+    padding-right: 0;
+}
+.card-header{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.roleRequest{
+    margin-top: 15px;
+}
+.roleRequest button{
+    margin-left: 10px ;
+}
+.companyProfileCardP{
+    font-size: 10px;
+}
+.p-0{
+   padding: 0 ;
+}
+.headerTextMiddle{
+    margin-top: 6px;
+}
