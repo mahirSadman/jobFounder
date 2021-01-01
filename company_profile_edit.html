@@ -74,135 +74,48 @@
     <main class="container d-flex justify-content-center" style="min-height: 100vh;">
         <div id="accordion" style="width: 600px;">
             <div class="formHeading text-center">
-                <h3 >Create an account</h3>
+                <h3 >Create Company</h3>
             </div>
             <!-- heading -->
             <form action="">
-            <div class="collapseList">
-              <div class="d-flex" id="headingThree">
-                  <h5 class="collapsed mb-0 headerTextMiddle"data-toggle="collapse" data-target="#acceptedCollapseList" aria-expanded="false" aria-controls="acceptedCollapseList">
-                   Pesonal Info<i class="fa fa-sort-desc" aria-hidden="true"></i>
-                  </h5>
-              </div>
-              <div id="acceptedCollapseList" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div >
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="firstname">First name </label>
-                        <input type="text" class="form-control" id="firstname" >
-                        <label for="lastname">Last name </label>
-                        <input type="text" class="form-control" id="lastname" >
+                        <label for="company_name">Company Name </label>
+                        <input type="text" class="form-control" id="company_name" >
+                        <label for="company_license">License no</label>
+                        <input type="text" class="form-control" id="company_license" >
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" >
                         <label for="phone">Phone number </label>
                         <input type="text" class="form-control" id="phone" >
-                        <label for="birthdate">Date of Birth </label>
-                        <input type="date" class="form-control" id="birthdate" >
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" >
+                        <label for="company_establish">Established</label>
+                        <input type="date" class="form-control" id="company_establish" >
+                        <label for="company_address">Address</label>
+                        <input type="text" class="form-control" id="company_address" >
                     </div>
                     <div class="form-group">
-                      <label for="gender">Gender</label>
-                      <select class="form-control" id="gender">
-                        <option>Male</option>
-                        <option>Female</option>
+                      <label for="company_type">Type</label>
+                      <select class="form-control" id="company_type">
+                        <option>Technological</option>
+                        <option>Business</option>
+                        <option>Constractor</option>
+                        <option>Bank</option>
                         <option>Other</option>
                       </select>
                     </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
                 </div>
-              </div>
             </div>
-            <!-- collapseList -->
-            <hr>
-            <div class="collapseList">
-              <div class="d-flex" id="headingThree">
-                  <h5 class="collapsed mb-0 headerTextMiddle"data-toggle="collapse" data-target="#waitingCollapseList" aria-expanded="false" aria-controls="waitingCollapseList">
-                   Education<i class="fa fa-sort-desc" aria-hidden="true"></i>
-                  </h5>
-              </div>
-              <div id="waitingCollapseList" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                  <div id="" class="card-body">
-                    <div class="form-group">
-                      <label for="exam_name">Exam name</label>
-                      <select class="form-control" id="exam">
-                        <option>SSC</option>
-                        <option>HSC</option>
-                        <option>BSc</option>
-                        <option>BBA</option>
-                        <option>BA</option>
-                        <option>MSc</option>
-                        <option>MBA</option>
-                        <option>MA</option>
-                      </select>
-                      <label for="exam_ear">Exam Year</label>
-                      <input type="number" class="form-control" id="exam_year" >
-                      <label for="exam_board">Exam Board</label>
-                      <select class="form-control" id="exam">
-                        <option>Dhaka</option>
-                        <option>Dinajpur</option>
-                        <option>Barisal</option>
-                        <option>Khulna</option>
-                        <option>Jassore</option>
-                        <option>Sylhet</option>
-                      </select>
-                      <label for="exam_result">Exam Result</label>
-                      <input type="number" min="1.00" max="5.00" class="form-control" id="exam_result" >
-                      <label for="exam_institute">Exam Institute</label>
-                      <input type="text" class="form-control" id="exam_institute" >
-                      
-                    </div>
-                    <div class="form-group">
-                      <a class="btn btn-outline-success" href="#"><i class="fa fa-plus"></i></a>
-
-                    </div>
-                    
-                  </div>
-              </div>
-            </div>
-            <!-- collapseList -->
-            <hr>
-            <div class="collapseList">
-              <div class="d-flex" id="headingThree">
-                  <h5 class="collapsed mb-0 headerTextMiddle"data-toggle="collapse" data-target="#pinnedCollapseList" aria-expanded="false" aria-controls="pinnedCollapseList">
-                    Skills<i class="fa fa-sort-desc" aria-hidden="true"></i>
-                  </h5>
-              </div>
-              <div id="pinnedCollapseList" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                  <div class="card-body">
-                    <div class="form-group">
-                      <label for="language_skill">Language</label>
-                      <input type="text" class="form-control" id="language_skill" >
-                      <label for="computer_skill">Exam Institute</label>
-                      <input type="text" class="form-control" id="computer_skill" >
-                      <br>
-                      <a class="btn btn-outline-success" href="#"><i class="fa fa-plus"></i></a>
-                    </div>
-                      
-                  </div>
-                  
-              </div>
-            </div>
-            <!-- collapseList -->
-            <hr>
-            <div class="collapseList">
-              <div class="d-flex" id="headingThree">
-                  <h5 class="collapsed mb-0 headerTextMiddle"data-toggle="collapse" data-target="#rejectedCollapseList" aria-expanded="false" aria-controls="rejectedCollapseList">
-                   Others<i class="fa fa-sort-desc" aria-hidden="true"></i>
-                  </h5>
-              </div>
-              <div id="rejectedCollapseList" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div>
+              
                   <div class="card-body">
                     <label for="others">Others</label>
                     <textarea class="form-control" name="others" id="" cols="30" rows="10"></textarea>
                   </div>
-              </div>
             </div>
             <!--  collapseList -->
             <br><br>
-            <button type="submit" class="btn btn-success btn-block">Save</button>
+            <button type="submit" class="pb-3 mb-3 btn btn-success btn-block">Save</button>
             </form>
 
         </div>
