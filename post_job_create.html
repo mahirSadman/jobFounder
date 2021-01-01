@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Job Founder</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/styles/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="user_dashboard.html">Job Founder</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto" >
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="user_dashboard.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+                  Jobs
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="jobs_discover.html">Discover Jobs</a></li>
+                  <li><a class="dropdown-item" href="jobs_search_results.html">Search Jobs</a></li>
+                  <li><a class="dropdown-item" href="jobs_applied.html">Applied Jobs</a></li>
+                  <li><a class="dropdown-item" href="jobs_pinned.html">Pinned Jobs</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarCompaniesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Companies
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarCompaniesDropdown">
+                    <li><a class="dropdown-item" href="company_my.html">My Companies</a></li>
+                    <li><a class="dropdown-item" href="company_search.html">Search Company</a></li>
+                    <li><a class="dropdown-item" href="company_create.html">Create Company</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="user_dashboard.html">
+                  <i class="fa fa-bell nav-bar-icon" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="user_dashboard.html">
+                  <i class="fa fa-comments nav-bar-icon" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="user_dashboard.html">
+                  <i class="fa fa-user nav-bar-icon" aria-hidden="true"></i>
+                  #User_name
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container d-flex justify-content-center" style="min-height: 100vh;">
+        <div id="accordion" style="width: 600px;">
+            <div class="formHeading text-center">
+                <h3 >Post a job</h3>
+            </div>
+            <!-- heading -->
+            <form action="">
+            <div >
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="job_name">Job Name </label>
+                        <input type="text" class="form-control" id="job_name" >
+                        <label for="job_company_name">Company Name </label>
+                        <input type="text" class="form-control" id="job_company_name" >
+                        
+                    </div>
+                    <div class="form-group">
+                      <label for="job_type">Type</label>
+                      <select class="form-control" id="job_type">
+                        <option>Web designer</option>
+                        <option>accountant</option>
+                        <option>Driver</option>
+                        <option>Guard</option>
+                        <option>Other</option>
+                      </select>
+                      <label for="employee_no">Number of employee </label>
+                        <input type="number" min="1" max="1000" class="form-control" id="employee_no" >
+                        <label for="job_experience">Required experience</label>
+                        <input type="text" class="form-control" id="job_experience" >
+                        <label for="job_skill">Required skill</label>
+                        <input type="text" class="form-control" id="job_skill" >
+                    </div>
+                </div>
+            </div>
+            <div>
+              
+                  <div class="card-body">
+                    <label for="others">Others</label>
+                    <textarea class="form-control" name="others" id="" cols="30" rows="10"></textarea>
+                  </div>
+            </div>
+            <!--  collapseList -->
+            <br><br>
+            <button type="submit" class="pb-3 mb-3 btn btn-primary btn-block">Submit</button>
+            </form>
+
+        </div>
+      <!-- main row -->
+    </main>
+
+    <footer class="bg-dark text-light text-center" style="min-height: 100px;">
+      <div class="align-middle">
+        <p class="margin-b0">Job Founderbr <br> A project by Mahir Sadman & Md. Kabin Hassan Kanchon.</p>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script src="https://kit.fontawesome.com/847f6ac481.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="assets/scripts/app.js"></script>
+  </body>
+</html>
