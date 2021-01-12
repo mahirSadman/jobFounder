@@ -48,53 +48,73 @@ class UserController extends Controller
         $user->first_name= $request->input('first_name');
         $user->last_name= $request->input('last_name');
         $user->password= $request->input('password');
-        $user->confirm_password= $request->input('confirm_password');
         $user->phone_num= $request->input('phone_num');
         $user->date_of_birth= $request->input('date_of_birth');
         $user->address= $request->input('address');
         $user->gender= $request->input('gender');
         $user->save();
-
+        return redirect()->route('user_profile.show', [$user->id]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\user  $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('user_profile', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\user  $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('user_profile_edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\user  $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        
+        $validatedData= $request->validate([
+            'email' => 'required|email',
+            'first_name' => 'required',
+            'password' => 'required|min:6|max:12',
+            'confirm_password' => 'required|min:6|max:12',
+            'phone_num' => 'required',
+            'gender' => 'required'
+        ]);
+        $user = User::find($id);
+        $user->email= $request->input('email');
+        $user->first_name= $request->input('first_name');
+        $user->last_name= $request->input('last_name');
+        $user->password= $request->input('password');
+        $user->phone_num= $request->input('phone_num');
+        $user->date_of_birth= $request->input('date_of_birth');
+        $user->address= $request->input('address');
+        $user->gender= $request->input('gender');
+        $user->save();
+        return redirect()->route('user_profile.show', [$user->id]);
+                        // ->with('success','Profile Updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\user  $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
