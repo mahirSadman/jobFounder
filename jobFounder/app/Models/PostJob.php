@@ -9,4 +9,8 @@ use App\Models\Company;
 class PostJob extends Model
 {
     use HasFactory;
+    
+    public function applicants(){
+        return $this->belongsToMany(User::class, "applied_jobs");
+    }
 }

@@ -15,4 +15,18 @@ class SearchBotController extends Controller
                return view('jobs_search_results', compact('jobs'));
 
     }
+
+    public function applyJob($id){
+        $postJob= PostJob::find($id);
+        $user_id=1;
+        $postJob->applicants()->attach($user_id);    
+        return redirect()->route('jobs.applied');
+
+    }
+
+    public function jobsApplied(){ 
+        return view('jobs_applied');
+    }
+
+
 }

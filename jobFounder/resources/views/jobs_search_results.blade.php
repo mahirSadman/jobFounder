@@ -586,8 +586,9 @@
                       <li>
                           <div>
                             <a class="text-primary font-weight-bold" href="">{{$job->job_title}}</a>
-                            <p>Company: sdafsdfs <br>
+                            <p>Company: Company name <br>
                             </p>
+                            <a href="{{route('apply.job',$job->id)}}">Apply</a>
                           </div>
                         </li>
                       @endforeach

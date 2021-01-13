@@ -14,6 +14,10 @@ class User extends Model
       ];
 
       public function companies(){
-        return $this->belongsToMany(Role::class, "roles");
+        return $this->belongsToMany(Company::class, "roles");
+      }
+
+      public function appliedJobs(){
+        return $this->belongsToMany(PostJob::class, "applied_jobs");
       }
 }

@@ -7,8 +7,6 @@
               <div id="map_box" class="jumbotron border p-3 mapBox">
                   <h3 class="mb-3">Profile</h3>
                   <img src="https://i9.dainikbhaskar.com/thumbnail/655x588/web2images/www.dailybhaskar.com/2016/12/13/alom_10_1481621118.jpg" class="img-fluid" alt="Responsive image">
-                  <br><br>
-                  <a href="{{route('user_profile.edit', [$user->id])}}" class="btn btn-primary btn-block">Edit</a>
               </div>
             </section>
             <!-- left section -->

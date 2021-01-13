@@ -78,38 +78,16 @@
             
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                      <a href="company_dashboard.html">
-                      <div class="d-flex justify-content-between">
-                          <p>#User name</p>
-                          <p class="companiesCompanyRole align-bottom">Owner</p>
-                      </div>
-                      </a>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="company_dashboard.html">
-                    <div class="d-flex justify-content-between">
-                        <p>#user name</p>
-                        <p class="companiesCompanyRole align-bottom">Owner</p>
-                    </div>
-                    </a>
-                    </li>
+                  @foreach($role_users as $role_user)
                     <li class="list-group-item">
                         <a href="company_dashboard.html">
                         <div class="d-flex justify-content-between">
-                            <p>#user name</p>
-                            <p class="companiesCompanyRole align-bottom">Recruiter</p>
+                            <p>{{$role_user->first_name}}</p>
+                            <p class="companiesCompanyRole align-bottom">Role</p>
                         </div>
                         </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="company_dashboard.html">
-                        <div class="d-flex justify-content-between">
-                            <p>#user name</p>
-                            <p class="companiesCompanyRole align-bottom">Recieptionist</p>
-                        </div>
-                        </a>
-                    </li>
+                    </li>                  
+                  @endforeach
                 </ul>
             </div>
           </div>

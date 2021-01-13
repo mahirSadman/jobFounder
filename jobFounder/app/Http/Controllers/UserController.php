@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function jobDiscover()
+    {
+        return view('jobs_discover');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -69,6 +73,13 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
+    public function dashboard($id)
+    {
+        $user = User::find($id);
+        $companies = $user->companies;
+        return view('User_dashboard', compact('user','companies'));
+    }
+
     public function show($id)
     {
         $user = User::find($id);

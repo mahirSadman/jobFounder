@@ -29,7 +29,7 @@
                   Jobs
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="jobs_discover.html">Discover Jobs</a></li>
+                  <li><a class="dropdown-item" href="{{route('jobs.discover')}}">Discover Jobs</a></li>
                   <li><a class="dropdown-item" href="jobs_search_results.html">Search Jobs</a></li>
                   <li><a class="dropdown-item" href="jobs_applied.html">Applied Jobs</a></li>
                   <li><a class="dropdown-item" href="jobs_pinned.html">Pinned Jobs</a></li>
@@ -75,7 +75,7 @@
       <div class="row " style="margin: 50px 0;" >
         <section class="col-12 col-md-4">
           <div class="card">
-            <h5 class="card-header">Profile</h5>
+            <h5 class="card-header">{{$user->first_name}} {{$user->last_name}}</h5>
             <div class="card-body">
               <div class="progress">
                 <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
@@ -88,7 +88,7 @@
                   <li class="list-group-item"><a href="">Add Education details</a></li>
                 </ul>
               </p>
-              <a href="user_profile_edit.html" class="btn btn-primary">Edit profile</a>
+              <a href="{{route('user_profile.edit', [$user->id])}}" class="btn btn-primary">Edit profile</a>
             </div>
           </div>
           <br>
@@ -99,38 +99,16 @@
             </div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                      <a href="company_dashboard.html">
-                      <div class="d-flex justify-content-between">
-                          <p>#company name</p>
-                          <p class="companiesCompanyRole align-bottom">Owner</p>
-                      </div>
-                      </a>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="company_dashboard.html">
-                    <div class="d-flex justify-content-between">
-                        <p>#company name</p>
-                        <p class="companiesCompanyRole align-bottom">Owner</p>
-                    </div>
-                    </a>
-                    </li>
+                  @foreach($companies as $company)
                     <li class="list-group-item">
                         <a href="company_dashboard.html">
                         <div class="d-flex justify-content-between">
-                            <p>#company name</p>
-                            <p class="companiesCompanyRole align-bottom">Recruiter</p>
+                            <p>{{$company->company_name}}</p>
+                            <p class="companiesCompanyRole align-bottom">Role</p>
                         </div>
                         </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="company_dashboard.html">
-                        <div class="d-flex justify-content-between">
-                            <p>#company name</p>
-                            <p class="companiesCompanyRole align-bottom">Recieptionist</p>
-                        </div>
-                        </a>
-                    </li>
+                    </li>                  
+                  @endforeach
                 </ul>
             </div>
           </div>

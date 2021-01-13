@@ -72,7 +72,8 @@ class CompanyController extends Controller
     public function dashboard($id)
     {
         $company = Company::find($id);
-        return view('company_dashboard', compact('company'));
+        $role_users = $company->users;
+        return view('company_dashboard', compact('company', 'role_users'));
     }
 
     public function show($id)
@@ -128,4 +129,6 @@ class CompanyController extends Controller
     {
         //
     }
+
+    
 }

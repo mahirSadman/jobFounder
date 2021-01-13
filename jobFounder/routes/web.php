@@ -27,14 +27,17 @@ Route::get('/user_dashboard', function () {
 Route::get('/company', function () {
     return view('company_dashboard');
 });
-Route::get('/jobs_discover', function () {
-    return view('jobs_discover');
-});
+
+Route::get('/jobs_discover',[UserController::class,('jobDiscover')])->name('jobs.discover');
+Route::get('/apply_job/{id}',[SearchBotController::class,('applyJob')])->name('apply.job');
+Route::get('/jobs_applied',[SearchBotController::class,('jobsApplied')])->name('jobs.applied');
+
 Route::get('/user_registration',[UserController::class,('create')])->name('userreg.create');
 Route::post('/user_registration',[UserController::class,('store')])->name('userreg.store');
-Route::get('/user_profile/{id}',[UserController::class,('show')])->name('user_profile.show');
+Route::get('/user_dashboard/{id}',[UserController::class,('dashboard')])->name('user_dashboard');
 Route::get('/user_profile_edit/{id}',[UserController::class,('edit')])->name('user_profile.edit');
 Route::put('/user_profile_edit/{id}',[UserController::class,('update')])->name('user_profile.update');
+Route::get('/user_profile/{id}',[UserController::class,('show')])->name('user_profile.show');
 
 //end of user route;
 
