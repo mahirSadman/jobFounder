@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Company;
 use App\Models\PostJob;
 use Illuminate\Http\Request;
 
@@ -22,9 +22,10 @@ class PostJobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('post_job_create');
+        $company= Company::find($id);
+        return view('post_job_create', compact('company'));
     }
 
     /**
@@ -43,7 +44,7 @@ class PostJobController extends Controller
             'job_category' => 'required'
         ]);
         $postJob=new PostJob;
-        $postJob->company_id=1;
+        $postJob->company_id=$request->input('company_id');
         $postJob->job_title= $request->input('job_title');
         $postJob->description= $request->input('description');
         $postJob->vacancy= $request->input('vacancy');

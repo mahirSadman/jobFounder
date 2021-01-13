@@ -151,7 +151,7 @@
             </div>
             <!-- collapseList -->
             <br><br>
-            <button type="submit" class="btn btn-primary btn-block" >Create</button>
+            <button type="submit" class="btn btn-primary btn-block">Create</button>
           </form>
           <br><br><br>
 

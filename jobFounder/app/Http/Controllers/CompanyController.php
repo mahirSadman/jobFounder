@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
+use App\Models\User;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -55,7 +57,10 @@ class CompanyController extends Controller
         $company->image= $request->input('image');
         $company->employee_num= $request->input('employee_num');
         $company->save();
-        return redirect()->route('company_profile.show', [$company->id]);
+
+        $user_id=1;
+        $company->users()->attach($user_id, ['role_type' => 'Owner']);
+        return redirect()->route('company_dashboard', [$company->id]);
     }
 
     /**
@@ -64,6 +69,12 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
+    public function dashboard($id)
+    {
+        $company = Company::find($id);
+        return view('company_dashboard', compact('company'));
+    }
+
     public function show($id)
     {
         $company = Company::find($id);
@@ -103,7 +114,7 @@ class CompanyController extends Controller
         $company->image= $request->input('image');
         $company->employee_num= $request->input('employee_num');
         $company->save();
-        return redirect()->route('company_profile.show', [$company->id]);
+        return redirect()->route('company_dashboard', [$company->id]);
 
     }
 

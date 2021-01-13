@@ -76,37 +76,44 @@
         <section class="col-12 col-md-4">
           <div id="job_search_box" class="jumbotron border p-3">
               <h3 class="mb-3">Search job</h3>
-            <form>
+            <form action="{{route('jobs.search')}}" method="POST">
+            @csrf
                 <div class="form-group">
                   <label for="job_name">Job Name</label>
-                  <input type="text" class="form-control" id="job_name">
+                  <input type="text" class="form-control" id="job_name" name="job_name">
                 </div>
                 <div class="form-group">
                     <label for="job_category">Job Category</label>
-                    <select class="form-control" id="job_Category">
-                      <option>Web designing</option>
-                      <option>Software development</option>
-                      <option>Accountant</option>
-                      <option>IT</option>
-                      <option>Receiptionist</option>
-                      <option>Guard</option>
-                      <option>Driver</option>
-                      <option>Teacher</option>
+                    <select class="form-control" id="job_category" name="job_category">
+                      <option value="WebDesigning">Web designing</option>
+                      <option value="SoftwareDevelopment">Software development</option>
+                      <option value="Accountant">Accountant</option>
+                      <option value="IT">IT</option>
+                      <option value="Receiptionist">Receiptionist</option>
+                      <option value="Guard">Guard</option>
+                      <option value="Driver">Driver</option>
+                      <option value="Teacher">Teacher</option>
                     </select>
                   </div>
                 <div class="form-group">
                   <label for="job_type">Job Type</label>
-                  <select class="form-control" id="job_type">
-                    <option>Full time</option>
-                    <option>Part time</option>
-                    <option>Freelancing</option>
-                    <option>Government</option>
-                    <option>Business</option>
+                  <select class="form-control" id="job_type" name="job_type">
+                    <option value="FullTime">Full time</option>
+                    <option value="PartTime">Part time</option>
+                    <option value="Freelancing">Freelancing</option>
+                    <option value="Government">Government</option>
+                    <option value="Business">Business</option>
                   </select>
                 </div>
                 <div class="form-group">
                     <label for="location">Location</label>
-                <input type="text" class="form-control" id="location" placeholder="ex: Savar, Dhaka">
+                    <select class="form-control" id="location" name="location">
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Mymensingh">Mymensingh</option>
+                    <option value="Barishal">Barishal</option>
+                    <option value="Shylet">Shylet</option>
+                    <option value="Rajshahi">Rajshahi</option>
+                  </select>
                 </div>
                 <div class="form-group">
                     <div>
@@ -254,9 +261,7 @@
                 </div>
                 <div class="form-group">
                     <button class="btn btn-info">Make a search bot</button>
-                    <a href="jobs_search_results.html" class="btn btn-success">
-                    Search
-                    </a>
+                    <button type="submit" class="btn btn-success">Search</button>
                 </div>
             </form>   
           </div>

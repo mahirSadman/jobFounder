@@ -39,11 +39,11 @@
                       <div class="form-group">
                       <label for="job_type">Type</label>
                       <select class="form-control" id="job_type" name="job_type" >
-                        <option>Full time</option>
-                        <option>Part time</option>
-                        <option>Freelancer</option>
-                        <option>Contract</option>
-                        <option>Other</option>
+                        <option value="FullTime">Full time</option>
+                        <option value="PartTime">Part time</option>
+                        <option value="Freelancing">Freelancing</option>
+                        <option value="Government">Government</option>
+                        <option value="Business">Business</option>
                       </select>
                       @error('job_type')
                           <span class="text-danger">{{$message}}</span>
@@ -53,11 +53,14 @@
                     <div class="form-group">
                       <label for="job_category">Category</label>
                       <select class="form-control" id="job_category" name="job_category">
-                        <option>Web designer</option>
-                        <option>accountant</option>
-                        <option>Driver</option>
-                        <option>Guard</option>
-                        <option>Other</option>
+                        <option value="WebDesigning">Web designing</option>
+                        <option value="SoftwareDevelopment">Software development</option>
+                        <option value="Accountant">Accountant</option>
+                        <option value="IT">IT</option>
+                        <option value="Receiptionist">Receiptionist</option>
+                        <option value="Guard">Guard</option>
+                        <option value="Driver">Driver</option>
+                        <option value="Teacher">Teacher</option>
                       </select>
                       @error('job_category')
                           <span class="text-danger">{{$message}}</span>

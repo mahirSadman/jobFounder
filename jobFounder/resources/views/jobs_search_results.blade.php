@@ -582,36 +582,15 @@
                 <div id="acceptedCollapseList" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                   <div class="card-body">
                       <ol>
-                        <li>
+                      @foreach ($jobs as  $job)
+                      <li>
                           <div>
-                            <a class="text-primary font-weight-bold" href="">Web designing</a>
-                            <p>Company: Google</p>
+                            <a class="text-primary font-weight-bold" href="">{{$job->job_title}}</a>
+                            <p>Company: sdafsdfs <br>
+                            </p>
                           </div>
                         </li>
-                        <li>
-                          <div>
-                            <a class="text-primary font-weight-bold" href="">Manager</a>
-                            <p>Company:Sonali bank</p>
-                          </div>
-                        </li>
-                        <li>
-                          <div>
-                            <a class="text-primary font-weight-bold" href="">Web designing</a>
-                            <p>Company: Apple</p>
-                          </div>
-                        </li>
-                        <li>
-                          <div>
-                            <a class="text-primary font-weight-bold" href="">Driver</a>
-                            <p>Company: Unilever</p>
-                          </div>
-                        </li>
-                        <li>
-                          <div>
-                            <a class="text-primary font-weight-bold" href="">Accountant</a>
-                            <p>Company: BPATC</p>
-                          </div>
-                        </li>
+                      @endforeach
                       </ol>
                   </div>
                 </div>
