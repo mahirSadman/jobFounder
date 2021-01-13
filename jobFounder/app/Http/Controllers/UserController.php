@@ -54,6 +54,13 @@ class UserController extends Controller
         $user->gender= $request->input('gender');
         $user->save();
         return redirect()->route('user_profile.show', [$user->id]);
+
+        if($query){
+            return back()->with('success','You have been successfully registered');
+        }
+        else{
+            return back()->with('fail','Something went wrong');
+        }
     }
 
     /**
