@@ -33,11 +33,35 @@
                     </ul>
                 </div>
                 <div id="form_signin_lp" class="col-12 col-md-4 jumbotron bg-dark text-white pb-0 pt-4 px-3 my-5" style="height: 250px;">
-                    <form action="" class="form-group ">
-                        <label for="username">User name</label>
-                        <input type="text" class="form-control" name="username">
+                <form action="{{route('auth.check')}}" class="form-group" method="POST">
+                        @csrf
+                        <div class="results">
+                            @if(Session::get('success'))
+                                <div class="alert alert-success">
+                                    {{Session::get('success')}}
+                                </div>
+                            @endif
+
+                            @if(Session::get('fail'))
+                                <div class="alert alert-danger">
+                                    {{Session::get('fail')}}
+                                </div>
+                            @endif
+                        </div>
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                        @error('email')
+                          <span class="text-danger">{{$message}}</span>
+                          <br>
+                        @enderror
+                        
                         <label for="password">Password</label>
-                        <input type="text" class="form-control" name="password">
+                        <input type="text" class="form-control" id="password" name="password">
+                        @error('password')
+                          <span class="text-danger">{{$message}}</span>
+                            <br>
+                        @enderror
+                        
                         <button class="btn mt-2 btn-success" >Log in</button>
                     </form>
                 </div>

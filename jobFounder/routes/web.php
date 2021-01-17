@@ -21,6 +21,13 @@ use App\Http\Controllers\RoleController;
 Route::get('/', function () {
     return view('index');
 });
+//auth starts
+Route::get('/login',[UserController::class,('login')])->name('auth.login');
+Route::post('/check',[UserController::class,('check')])->name('auth.check');
+Route::get('profile',[UserController::class,('profile')]);
+Route::get('logout',[UserController::class,('logout')])->name('auth.logout')->name('auth.logout');
+//auth ends
+
 Route::get('/user_dashboard', function () {
     return view('user_dashboard');
 });
@@ -63,3 +70,4 @@ Route::get('/apply_job/{id}',[SearchBotController::class,('applyJob')])->name('a
 Route::post('/accept_candidate',[PostJobController::class,('candidate_accept')])->name('candidate.accept');
 
 Route::post('/add_role',[RoleController::class,('add')])->name('role.add');
+

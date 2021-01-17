@@ -139,4 +139,45 @@ class UserController extends Controller
     {
         //
     }
+
+    //auth starts
+    public function login(){
+        return view('index');
+    }
+    public function check(Request $request){
+        
+        $validatedData= $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6|max:12'
+        ]);
+        $user=User::where('email','=',$request->email)->first();
+        if($user){
+            if(Hash::check($request->password,$user->password)){
+                $request->session()->put('LoggedUser',$user->id);
+                return redirect('profile');
+            }
+            else{
+                return back()->with('fail','Incorrect password');
+            }
+        }
+        else{
+            return back()->with('fail','No account founded');
+        }
+    }
+    public function profile(){
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+           
+        }
+        return view('user_profile',compact('user'));
+    }
+
+    public function logout(){
+        if(session()->has('LoggedUser')){
+            session()->pull('LoggedUser');
+            return redirect('login');
+        }
+
+    }
+    //auth ends
 }

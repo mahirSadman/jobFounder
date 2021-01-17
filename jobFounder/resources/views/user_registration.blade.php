@@ -6,7 +6,7 @@
                 <h3 >Create an account</h3>
             </div>
             <!-- heading -->
-          <form action="{{route('userreg.store')}}" method="POST">
+            <form action="{{route('userreg.store')}}" method="POST">
             @csrf 
             <div class="results">
               @if(Session::get('success'))
