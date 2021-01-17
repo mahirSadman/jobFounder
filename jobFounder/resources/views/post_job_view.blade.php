@@ -298,37 +298,24 @@
                 <div class="collapseList">
                   <div class="d-flex" id="headingThree">
                       <h5 class="collapsed mb-0 headerTextMiddle"data-toggle="collapse" data-target="#acceptedCollapseList" aria-expanded="false" aria-controls="acceptedCollapseList">
-                       Accepted Candidates(3)<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                       Accepted Candidates<i class="fa fa-sort-desc" aria-hidden="true"></i>
                       </h5>
                   </div>
                   <div id="acceptedCollapseList" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                       <div class="card-body">
                         <ol class="mx-5"> 
-                          <li>
-                              <div class="row">
-                                  <div class="col-8">
-                                      <a class="text-primary font-weight-bold" href="#">Ramisa Tarannum</a>
-                                      <p>BSc in CSE</p>
-                                  </div>
-                              </div>
-                          </li>
-                          <li>
-                              <div class="row">
-                                  <div class="col-8">
-                                      <a class="text-primary font-weight-bold" href="#">Mahir Sadman</a>
-                                      <p>BSc in CSE</p>
-                                  </div>
-                                  
-                              </div>
-                          </li>
-                          <li>
-                              <div class="row">
-                                  <div class="col-8" >
-                                      <a class="text-primary font-weight-bold" href="#">Kabin Hasan</a>
-                                      <p>BSc in CSE</p>
-                                  </div>
-                              </div>
-                          </li>
+                        @foreach($postJob->candidates as $candidate)
+                            @if ($candidate->pivot->accepted == "accepted")
+                            <li>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <a class="text-primary font-weight-bold" href="#">{{$candidate->first_name}}</a>
+                                        <p>BSc in CSE</p>
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+                        @endforeach
                       </ol>
                       </div>
                   </div>
@@ -484,6 +471,38 @@
                   </div>
                 </div>
                 <!-- rejected collapseList -->
+                <hr>
+                <div class="collapseList">
+                  <div class="d-flex" id="headingThree">
+                      <h5 class="collapsed mb-0 headerTextMiddle"data-toggle="collapse" data-target="#allCandidates" aria-expanded="false" aria-controls="allCandidates">
+                       All Candidates({{count($postJob->candidates)}})<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                      </h5>
+                  </div>
+                  <div id="allCandidates" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                      <div class="card-body">
+                        <ol class="mx-5"> 
+                            @foreach($postJob->candidates as $candidate)
+                                <li>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <a class="text-primary font-weight-bold" href="#">{{$candidate->first_name}}</a>
+                                            <p>BSc in CSE</p>
+                                        </div>
+                                        <div class="col-4">
+                                            <form action="{{route('candidate.accept')}}" method="POST">
+                                            @csrf 
+                                            <input type="hidden" name="candidate_job_id" value="{{$candidate->pivot->id}}">
+                                            <button type="submit" class="btn btn-sm btn-success">Accept</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                      </ol>
+                      </div>
+                  </div>
+                </div>
+                <!-- all candidates collapseList -->
               </div>
               <!-- posted jobs list --> 
               <hr>

@@ -19,8 +19,8 @@ class CreateAppliedJobsTable extends Migration
             $table->integer('post_job_id')->unsigned()->index();
             $table->integer('cv_type')->nullable();
             $table->string('custom_cv')->nullable();
-            $table->boolean('interview_call')->nullable();
-            $table->boolean('accepted')->nullable();
+            $table->string('interview_call')->nullable();
+            $table->string('accepted')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('post_job_id')->references('id')->on('post_jobs')->onDelete('cascade');

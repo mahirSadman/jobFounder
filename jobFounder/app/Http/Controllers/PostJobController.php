@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\AppliedJob;
 use App\Models\Company;
 use App\Models\PostJob;
 use Illuminate\Http\Request;
@@ -93,6 +94,13 @@ class PostJobController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData= $request->validate([
+            'job_title' => 'required',
+            'vacancy' => 'required',
+            'deadline_date' => 'required',
+            'job_type' => 'required',
+            'job_category' => 'required'
+        ]);
         $postJob= PostJob::find($id);
         $postJob->job_title= $request->input('job_title');
         $postJob->description= $request->input('description');
@@ -118,5 +126,17 @@ class PostJobController extends Controller
     public function destroy(PostJob $postJob)
     {
         //
+    }
+
+    public function candidate_accept(Request $request)
+    {
+        $validatedData= $request->validate([
+            'candidate_job_id' => 'required'
+        ]);
+        $candidate_job= AppliedJob::find($request->candidate_job_id);
+        
+        $candidate_job->accepted = "accepted";
+        $candidate_job->save();
+        return redirect()->route('post_job_view.show', [$candidate_job->post_job_id]);
     }
 }

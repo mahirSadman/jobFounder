@@ -29,7 +29,6 @@ Route::get('/company', function () {
 });
 
 Route::get('/jobs_discover',[UserController::class,('jobDiscover')])->name('jobs.discover');
-Route::get('/apply_job/{id}',[SearchBotController::class,('applyJob')])->name('apply.job');
 Route::get('/jobs_applied',[SearchBotController::class,('jobsApplied')])->name('jobs.applied');
 
 Route::get('/user_registration',[UserController::class,('create')])->name('userreg.create');
@@ -59,5 +58,8 @@ Route::put('/post_job_view_edit/{post_job_id}',[PostJobController::class,('updat
 //end of post_job route;
 
 Route::post('/jobs_search_results',[SearchBotController::class,('search')])->name('jobs.search');
+
+Route::get('/apply_job/{id}',[SearchBotController::class,('applyJob')])->name('apply.job');
+Route::post('/accept_candidate',[PostJobController::class,('candidate_accept')])->name('candidate.accept');
 
 Route::post('/add_role',[RoleController::class,('add')])->name('role.add');

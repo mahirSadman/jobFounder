@@ -146,17 +146,19 @@
             <div id="accordion">
                 <div class="d-flex" id="headingThree">
                     <h5 class="collapsed mb-0 headerTextMiddle"data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                     Pending interviews(3)<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                     Accepted Jobs(3)<i class="fa fa-sort-desc" aria-hidden="true"></i>
                     </h5>
                     
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                     <div class="card-body">
                         <ol class="mx-5"> 
+                        @foreach($applied_jobs as $applied_job)
+                            @if ($applied_job->pivot->accepted == "accepted")
                             <li>
                                 <div class="row">
                                     <div class="col-8">
-                                        <a class="text-primary font-weight-bold" href="#">Web desiging</a>
+                                        <a class="text-primary font-weight-bold" href="#">{{$applied_job->job_title}}</a>
                                         <p>Microsoft</p>
                                     </div>
                                     <div class="col-4">
@@ -164,28 +166,8 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <a class="text-primary font-weight-bold" href="#">Web desiging</a>
-                                        <p>Google</p>
-                                    </div>
-                                    <div class="col-4">
-                                        <a class="btn btn-danger" href="#">Cancel</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <a class="text-primary font-weight-bold" href="#">Web desiging</a>
-                                        <p>Grameenphone</p>
-                                    </div>
-                                    <div class="col-4">
-                                        <a class="btn btn-danger" href="#">Cancel</a>
-                                    </div>
-                                </div>
-                            </li>
+                            @endif
+                        @endforeach
                         </ol>
                     </div>
                 </div>
@@ -201,50 +183,19 @@
                 <div id="collapseThree2" class="collapse" aria-labelledby="headingThree2" data-parent="#accordion2">
                     <div class="card-body">
                         <ol class="mx-5"> 
-                            <li>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <a class="text-primary font-weight-bold" href="#">Web desiging</a>
-                                        <p>Microsoft</p>
-                                    </div>
-                                    <div class="col-4">
-                                        <a class="btn btn-danger" href="#">Cancel</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <a class="text-primary font-weight-bold" href="#">Web desiging</a>
-                                        <p>Google</p>
-                                    </div>
-                                    <div class="col-4">
-                                        <a class="btn btn-danger" href="#">Cancel</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <a class="text-primary font-weight-bold" href="#">Web desiging</a>
-                                        <p>Grameenphone</p>
-                                    </div>
-                                    <div class="col-4">
-                                        <a class="btn btn-danger" href="#">Cancel</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <a class="text-primary font-weight-bold" href="#">Web desiging</a>
-                                        <p>Microsoft</p>
-                                    </div>
-                                    <div class="col-4">
-                                        <a class="btn btn-danger" href="#">Cancel</a>
-                                    </div>
-                                </div>
-                            </li>
+                          @foreach($applied_jobs as $applied_job)
+                              <li>
+                                  <div class="row">
+                                      <div class="col-8">
+                                          <a class="text-primary font-weight-bold" href="#">{{$applied_job->job_title}}</a>
+                                          <p>Microsoft</p>
+                                      </div>
+                                      <div class="col-4">
+                                          <a class="btn btn-danger" href="#">Cancel</a>
+                                      </div>
+                                  </div>
+                              </li>
+                          @endforeach
                         </ol>
                     </div>
                 </div>

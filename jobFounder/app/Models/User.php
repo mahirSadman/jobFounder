@@ -14,10 +14,12 @@ class User extends Model
       ];
 
       public function companies(){
-        return $this->belongsToMany(Company::class, "roles");
+        return $this->belongsToMany(Company::class, "roles")
+        ->withPivot(['role_type']);
       }
 
       public function appliedJobs(){
-        return $this->belongsToMany(PostJob::class, "applied_jobs");
+        return $this->belongsToMany(PostJob::class, "applied_jobs")
+        ->withPivot(['accepted']);
       }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\PostJob;
 use Illuminate\Http\Request;
-
 
 class SearchBotController extends Controller
 {
@@ -21,11 +21,14 @@ class SearchBotController extends Controller
         $user_id=1;
         $postJob->applicants()->attach($user_id);    
         return redirect()->route('jobs.applied');
-
     }
 
-    public function jobsApplied(){ 
-        return view('jobs_applied');
+    public function jobsApplied(){
+        $id= 1;
+        $user = User::find($id);
+        $applied_jobs = $user->appliedJobs;
+        
+        return view('jobs_applied', compact('applied_jobs'));
     }
 
 

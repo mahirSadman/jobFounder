@@ -10,7 +10,8 @@ class PostJob extends Model
 {
     use HasFactory;
     
-    public function applicants(){
-        return $this->belongsToMany(User::class, "applied_jobs");
+    public function candidates(){
+        return $this->belongsToMany(User::class, "applied_jobs")
+        ->withPivot(['id', 'accepted']);
     }
 }

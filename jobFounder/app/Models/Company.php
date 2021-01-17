@@ -15,6 +15,7 @@ class Company extends Model
     }
 
     public function users(){
-        return $this->belongsToMany(User::class, "roles");
+        return $this->belongsToMany(User::class, "roles")
+        ->withPivot(['role_type']);
     }
 }

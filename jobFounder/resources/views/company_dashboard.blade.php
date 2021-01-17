@@ -83,7 +83,7 @@
                         <a href="company_dashboard.html">
                         <div class="d-flex justify-content-between">
                             <p>{{$role_user->first_name}}</p>
-                            <p class="companiesCompanyRole align-bottom">Role</p>
+                            <p class="companiesCompanyRole align-bottom">{{$role_user->pivot->role_type}}</p>
                         </div>
                         </a>
                     </li>                  
