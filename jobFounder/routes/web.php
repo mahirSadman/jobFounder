@@ -72,3 +72,6 @@ Route::post('/wait_candidate',[PostJobController::class,('candidate_wait')])->na
 
 Route::post('/add_role',[RoleController::class,('add')])->name('role.add');
 
+//mail
+Route::get('/send_mail',[MailController::class,('sendMail')])->name('mail.send');
+//mail
