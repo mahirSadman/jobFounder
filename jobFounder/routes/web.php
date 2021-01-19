@@ -68,6 +68,7 @@ Route::post('/jobs_search_results',[SearchBotController::class,('search')])->nam
 
 Route::get('/apply_job/{id}',[SearchBotController::class,('applyJob')])->name('apply.job');
 Route::post('/accept_candidate',[PostJobController::class,('candidate_accept')])->name('candidate.accept');
+Route::post('/wait_candidate',[PostJobController::class,('candidate_wait')])->name('candidate.wait');
 
 Route::post('/add_role',[RoleController::class,('add')])->name('role.add');
 

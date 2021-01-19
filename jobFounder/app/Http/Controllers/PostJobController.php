@@ -5,6 +5,7 @@ use App\Models\AppliedJob;
 use App\Models\Company;
 use App\Models\PostJob;
 use Illuminate\Http\Request;
+use App\Events\CandidateStatus;
 
 class PostJobController extends Controller
 {
@@ -17,7 +18,12 @@ class PostJobController extends Controller
     {
         //
     }
+    //event starts
+    protected $dispatchesEvents=[
+        'updated' => CandidateStatus::class
+    ];
 
+    //event ends
     /**
      * Show the form for creating a new resource.
      *
@@ -139,4 +145,16 @@ class PostJobController extends Controller
         $candidate_job->save();
         return redirect()->route('post_job_view.show', [$candidate_job->post_job_id]);
     }
+    public function candidate_wait(Request $request)
+    {
+        $validatedData= $request->validate([
+            'candidate_job_id' => 'required'
+        ]);
+        $candidate_job= AppliedJob::find($request->candidate_job_id);
+        
+        $candidate_job->accepted = "waiting";
+        $candidate_job->save();
+        return redirect()->route('post_job_view.show', [$candidate_job->post_job_id]);
+    }
+
 }

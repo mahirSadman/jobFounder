@@ -488,7 +488,14 @@
                                             <a class="text-primary font-weight-bold" href="#">{{$candidate->first_name}}</a>
                                             <p>BSc in CSE</p>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-2">
+                                            <form action="{{route('candidate.wait')}}" method="POST">
+                                            @csrf 
+                                            <input type="hidden" name="candidate_job_id" value="{{$candidate->pivot->id}}">
+                                            <button type="submit" class="btn btn-sm btn-warning">Waiting</button>
+                                            </form>
+                                        </div>
+                                        <div class="col-2">
                                             <form action="{{route('candidate.accept')}}" method="POST">
                                             @csrf 
                                             <input type="hidden" name="candidate_job_id" value="{{$candidate->pivot->id}}">
