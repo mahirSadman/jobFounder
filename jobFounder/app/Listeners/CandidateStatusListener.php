@@ -26,6 +26,6 @@ class CandidateStatusListener
      */
     public function handle(CandidateStatus $event)
     {
-        echo "nice";
+        dd ('nice');
     }
 }
