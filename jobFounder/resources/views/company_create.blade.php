@@ -136,14 +136,12 @@
 
 
 <div id="map" style="width:100%; height:500px;"></div>
-<input id="address" type="text" style="width:600px;"/><br/>
-<input type="text" id="latitude" placeholder="Latitude"/>
-<input type="text" id="longitude" placeholder="Longitude"/>
+
 
             <br><br>
             <button type="submit" class="btn btn-primary btn-block" >Create</button>
             </form>
-
+<br><br>
         </div>
       <!-- main row -->
     </main>

@@ -18,14 +18,18 @@ class SearchBotController extends Controller
 
     public function applyJob($id){
         $postJob= PostJob::find($id);
-        $user_id=1;
-        $postJob->applicants()->attach($user_id);    
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+        }
+        $postJob->candidates()->attach($user->id);    
         return redirect()->route('jobs.applied');
     }
 
     public function jobsApplied(){
-        $id= 1;
-        $user = User::find($id);
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+        }
+        $user = User::find($user->id);
         $applied_jobs = $user->appliedJobs;
         
         return view('jobs_applied', compact('applied_jobs'));

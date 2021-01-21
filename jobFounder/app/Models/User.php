@@ -17,6 +17,11 @@ class User extends Model
       {
         return $this->hasMany(Notification::class);
       }
+      
+      public function communications()
+      {
+        return $this->hasMany(Communication::class);
+      }
 
       public function companies(){
         return $this->belongsToMany(Company::class, "roles")
@@ -27,4 +32,5 @@ class User extends Model
         return $this->belongsToMany(PostJob::class, "applied_jobs")
         ->withPivot(['accepted']);
       }
+
 }

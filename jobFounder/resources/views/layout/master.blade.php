@@ -22,7 +22,7 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto" >
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="user_dashboard.html">Home</a>
+                <a class="nav-link active" aria-current="page" href="{{route('user_dashboard')}}">Home</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
@@ -46,12 +46,12 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="user_notification.html">
+                <a class="nav-link " aria-current="page" href="{{route('notifications')}}">
                   <i class="fa fa-bell nav-bar-icon" aria-hidden="true"></i>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="user_communication.html">
+                <a class="nav-link " aria-current="page" href="{{route('communications')}}">
                   <i class="fa fa-comments nav-bar-icon" aria-hidden="true"></i>
                 </a>
               </li>

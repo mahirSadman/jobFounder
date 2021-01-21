@@ -277,9 +277,11 @@
             <div class="card">
               <h5 class="card-header">Job info</h5>
               <div class="card-body">
-                #job name <br>
-                #Days remaining <br>
-                #other info
+                Name: <b>{{$postJob->job_title}}</b>  <br>
+                Description: {{$postJob->description}} <br>
+                Type: <b>{{$postJob->job_type}}</b>  <br>
+                Category: <b>{{$postJob->job_category}}</b> <br>
+                DeadLine: {{$postJob->deadline_date}}
                 <p class="card-text">
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item"><a href="">Change last date</a></li>

@@ -39,8 +39,8 @@ class CompanyController extends Controller
     {
         $validatedData= $request->validate([
             'company_name' => 'required',
-            'license_num' => 'required',
-            'email' => 'required|email',
+            'license_num' => 'required|unique:companies|min:4',
+            'email' => 'required|email|unique:companies|min:4',
             'contact' => 'required',
             'location' => 'required',
             'industry_type' => 'required'
@@ -58,8 +58,11 @@ class CompanyController extends Controller
         $company->employee_num= $request->input('employee_num');
         $company->save();
 
-        $user_id=1;
-        $company->users()->attach($user_id, ['role_type' => 'Owner']);
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+        }
+
+        $company->users()->attach($user->id, ['role_type' => 'Owner']);
         return redirect()->route('company_dashboard', [$company->id]);
     }
 
@@ -130,5 +133,12 @@ class CompanyController extends Controller
         //
     }
 
-    
+    public function allCompanies()
+    {
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+        }
+        $companies = $user->companies;
+        return view('company_my', compact('companies'));
+    }
 }

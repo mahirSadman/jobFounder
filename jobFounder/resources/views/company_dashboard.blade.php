@@ -68,7 +68,7 @@
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" >Send request</button>
+                        <button type="submit" class="btn btn-success" >Add</button>
                         </form>
                       </div>
                       </div>
@@ -111,7 +111,7 @@
                         <li>
                             <div class="row">
                                 <div class="col-8">
-                                    <a class="text-primary font-weight-bold" href="post_job_view.html">{{$PostJob->job_title}}</a>
+                                    <a class="text-primary font-weight-bold" href="{{route('post_job_view.show',$PostJob->id)}}"'post_job_view.show'>{{$PostJob->job_title}}</a>
                                     <p>Salary: 30000Tk</p>
                                 </div>
                                 <div class="col-4">

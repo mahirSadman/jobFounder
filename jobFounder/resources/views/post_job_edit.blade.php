@@ -20,7 +20,7 @@
                           <br>
                         @enderror
                         <label for="description">Description</label>
-                        <input type="text" class="form-control" id="description" name="description" >
+                        <input type="text" class="form-control" id="description" name="description" value="{{$postJob->description}}" >
                         <label for="vacancy">Vacancy</label>
                         <input type="number" class="form-control" id="vacancy" name="vacancy" value="{{$postJob->vacancy}}">
                         @error('vacancy')
@@ -38,7 +38,7 @@
                       </div>
                       <div class="form-group">
                       <label for="job_type">Type</label>
-                      <select class="form-control" id="job_type" name="job_type" >
+                      <select class="form-control" id="job_type" name="job_type" value="$postJob->job_type">
                         <option value="FullTime">Full time</option>
                         <option value="PartTime">Part time</option>
                         <option value="Freelancing">Freelancing</option>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="form-group">
                       <label for="job_category">Category</label>
-                      <select class="form-control" id="job_category" name="job_category">
+                      <select class="form-control" id="job_category" name="job_category" value="$postJob->job_category">
                         <option value="WebDesigning">Web designing</option>
                         <option value="SoftwareDevelopment">Software development</option>
                         <option value="Accountant">Accountant</option>

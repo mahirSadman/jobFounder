@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Notification;
+use App\Models\Communication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -59,7 +60,7 @@ class UserController extends Controller
         $user->address= $request->input('address');
         $user->gender= $request->input('gender');
         $user->save();
-        return redirect()->route('user_profile.show', [$user->id]);
+        return view('index');
 
         if($query){
             return back()->with('success','You have been successfully registered');
@@ -96,9 +97,11 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $user = User::find($id);
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+        }
         return view('user_profile_edit', compact('user'));
     }
 
@@ -109,17 +112,19 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $validatedData= $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users|min:4',
             'first_name' => 'required',
             'password' => 'required|min:6|max:12',
             'confirm_password' => 'required|min:6|max:12',
             'phone_num' => 'required',
             'gender' => 'required'
         ]);
-        $user = User::find($id);
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+        }
         $user->email= $request->input('email');
         $user->first_name= $request->input('first_name');
         $user->last_name= $request->input('last_name');
@@ -129,7 +134,7 @@ class UserController extends Controller
         $user->address= $request->input('address');
         $user->gender= $request->input('gender');
         $user->save();
-        return redirect()->route('user_profile.show', [$user->id]);
+        return redirect('user_dashboard');
                         // ->with('success','Profile Updated successfully.');
     }
 
@@ -158,7 +163,7 @@ class UserController extends Controller
         if($user){
             if(Hash::check($request->password,$user->password)){
                 $request->session()->put('LoggedUser',$user->id);
-                return redirect('profile');
+                return redirect('user_dashboard');
             }
             else{
                 return back()->with('fail','Incorrect password');
@@ -190,7 +195,38 @@ class UserController extends Controller
         }
         $user_notifications= $user->notifications->sortByDesc('id');
         return view('user_notification',compact('user_notifications'));
-
     }
 
+    public function communications(){
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+        }
+        $user_communications= $user->communications->sortByDesc('id');
+        return view('user_communication',compact('user_communications'));
+    }
+
+    public function communications_send(Request $request){
+        $validatedData= $request->validate([
+            'send_to' => 'required|email',
+            'message' => 'required'
+        ]);
+        $sender=User::where('email','=',$request->send_to)->first();
+        if($sender){
+            if(session()->has('LoggedUser')){
+                $user=User::where('id','=',session('LoggedUser'))->first();
+            }
+            $communication= new communication;
+            $communication->user_id= $sender->id;
+            $communication->sender_id= $user->id;
+            $communication->topic= $request->topic;
+            $communication->message= $request->message;
+    
+            $communication->save();
+            return redirect('communications');
+        }
+        else{
+            return back()->with('fail','No account founded');
+        }
+        
+    }
 }

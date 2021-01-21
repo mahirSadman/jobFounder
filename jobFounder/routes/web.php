@@ -35,25 +35,32 @@ Route::get('/company', function () {
     return view('company_dashboard');
 });
 Route::get('/notifications',[UserController::class,('notifications')])->name('notifications');
+Route::get('/communications',[UserController::class,('communications')])->name('communications');
+Route::post('/communications_send',[UserController::class,('communications_send')])->name('communications.send');
 Route::get('/jobs_discover',[UserController::class,('jobDiscover')])->name('jobs.discover');
 Route::get('/jobs_applied',[SearchBotController::class,('jobsApplied')])->name('jobs.applied');
 
 Route::get('/user_registration',[UserController::class,('create')])->name('userreg.create');
 Route::post('/user_registration',[UserController::class,('store')])->name('userreg.store');
 Route::get('/user_dashboard',[UserController::class,('dashboard')])->name('user_dashboard');
-Route::get('/user_profile_edit/{id}',[UserController::class,('edit')])->name('user_profile.edit');
-Route::put('/user_profile_edit/{id}',[UserController::class,('update')])->name('user_profile.update');
+
+
+
+Route::get('/user_profile_edit',[UserController::class,('edit')])->name('user_profile.edit');
+Route::put('/user_profile_edit',[UserController::class,('update')])->name('user_profile.update');
+
 Route::get('/user_profile/{id}',[UserController::class,('show')])->name('user_profile.show');
 
 //end of user route;
 
+//company route;
+Route::get('/company_my',[CompanyController::class,('allCompanies')])->name('company.my');
 Route::get('/company_create',[CompanyController::class,('create')])->name('companycreate.create');
 Route::post('/company_create',[CompanyController::class,('store')])->name('companycreate.store');
 Route::get('/company_dashboard/{id}',[CompanyController::class,('dashboard')])->name('company_dashboard');
 Route::get('/company_profile_edit/{id}',[CompanyController::class,('edit')])->name('company_profile.edit');
 Route::put('/company_profile_edit/{id}',[CompanyController::class,('update')])->name('company_profile.update');
 Route::get('/company_profile/{id}',[CompanyController::class,('show')])->name('company_profile.show');
-
 //end of company route;
 
 Route::get('/post_job_create/{company_id}',[PostJobController::class,('create')])->name('post_jobcreate.create');
@@ -80,9 +87,6 @@ Route::get('/jobs_pinned', function(){
     return view('jobs_pinned');
 })->name('jobs.apllied');
 
-Route::get('/company_my', function(){
-    return view('company_my');
-})->name('company.my');
 
 Route::get('/company_search', function(){
     return view('company_search');

@@ -42,6 +42,6 @@ class CandidateStatusListener
         $notifi->user_id = $event->appliedJob->user_id;
         $notifi->notification = "testing accept job with applicant id";
         $notifi->save();
-dd('mail sentddddddddddddd');
+        // dd('mail sentddddddddddddd');
     }
 }

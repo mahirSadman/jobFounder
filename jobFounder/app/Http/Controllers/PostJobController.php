@@ -149,7 +149,7 @@ class PostJobController extends Controller
         
         $candidate_job->accepted = "waiting";
         $candidate_job->save();
-        // return redirect()->route('post_job_view.show', [$candidate_job->post_job_id]);
+        return redirect()->route('post_job_view.show', [$candidate_job->post_job_id]);
     }
 
 }
