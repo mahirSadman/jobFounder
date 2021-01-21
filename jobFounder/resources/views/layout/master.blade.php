@@ -29,10 +29,10 @@
                   Jobs
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="jobs_discover.html">Discover Jobs</a></li>
-                  <li><a class="dropdown-item" href="jobs_search_results.html">Search Jobs</a></li>
-                  <li><a class="dropdown-item" href="jobs_applied.html">Applied Jobs</a></li>
-                  <li><a class="dropdown-item" href="jobs_pinned.html">Pinned Jobs</a></li>
+                  <li><a class="dropdown-item" href="{{route('jobs.discover')}}">Discover Jobs</a></li>
+                  <li><a class="dropdown-item" href="{{route('jobs.discover')}}">Search Jobs</a></li>
+                  <li><a class="dropdown-item" href="{{route('jobs.applied')}}">Applied Jobs</a></li>
+                  <li><a class="dropdown-item" href="{{route('jobs.apllied')}}">Pinned Jobs</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -40,9 +40,9 @@
                   Companies
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarCompaniesDropdown">
-                    <li><a class="dropdown-item" href="company_my.html">My Companies</a></li>
-                    <li><a class="dropdown-item" href="company_search.html">Search Company</a></li>
-                    <li><a class="dropdown-item" href="company_create.html">Create Company</a></li>
+                    <li><a class="dropdown-item" href="{{route('company.my')}}">My Companies</a></li>
+                    <li><a class="dropdown-item" href="{{route('jobs.discover')}}">Search Company</a></li>
+                    <li><a class="dropdown-item" href="{{route('companycreate.create')}}">Create Company</a></li>
                 </ul>
               </li>
               <li class="nav-item">
@@ -61,8 +61,8 @@
                   #User_name
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarProfileDropdown">
-                    <li><a class="dropdown-item" href="user_profile_edit.html">Edit profile</a></li>
-                    <li><a class="dropdown-item" href="index.html">Log out</a></li>
+                    <li><a class="dropdown-item" href="{{route('user_profile.edit')}}">Edit profile</a></li>
+                    <li><a class="dropdown-item" href="{{route('index')}}">Log out</a></li>
                 </ul>
               </li>
             </ul>

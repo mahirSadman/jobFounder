@@ -20,7 +20,7 @@ use App\Http\Controllers\MailController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 //auth starts
 Route::get('/login',[UserController::class,('login')])->name('auth.login');
 Route::post('/check',[UserController::class,('check')])->name('auth.check');
@@ -40,7 +40,7 @@ Route::get('/jobs_applied',[SearchBotController::class,('jobsApplied')])->name('
 
 Route::get('/user_registration',[UserController::class,('create')])->name('userreg.create');
 Route::post('/user_registration',[UserController::class,('store')])->name('userreg.store');
-Route::get('/user_dashboard/{id}',[UserController::class,('dashboard')])->name('user_dashboard');
+Route::get('/user_dashboard',[UserController::class,('dashboard')])->name('user_dashboard');
 Route::get('/user_profile_edit/{id}',[UserController::class,('edit')])->name('user_profile.edit');
 Route::put('/user_profile_edit/{id}',[UserController::class,('update')])->name('user_profile.update');
 Route::get('/user_profile/{id}',[UserController::class,('show')])->name('user_profile.show');
@@ -75,3 +75,15 @@ Route::post('/add_role',[RoleController::class,('add')])->name('role.add');
 //mail
 Route::get('/send_mail',[MailController::class,('sendMail')])->name('mail.send');
 //mail
+
+Route::get('/jobs_pinned', function(){
+    return view('jobs_pinned');
+})->name('jobs.apllied');
+
+Route::get('/company_my', function(){
+    return view('company_my');
+})->name('company.my');
+
+Route::get('/company_search', function(){
+    return view('company_search');
+})->name('company.search');

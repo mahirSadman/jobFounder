@@ -12,11 +12,9 @@
         <nav id="land_nav" class="navbar navbar-expand-sm bg-dark">
             <a class="navbar-brand text-white" href="#lp_home"><i class="fa fa-caret-square-o-up"></i> Job Founder</a>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item "><a class="nav-link text-white" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="jobs_discover.html">Discover jobs</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="#login_lp">Sign in </a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="user_registration.html">Create Account </a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="#">About us</a></li>
+                <li class="nav-item "><a class="nav-link text-white" href="{{route('index')}}">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{{route('userreg.create')}}">Create Account </a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="">About us</a></li>
             </ul>
 
         </nav>

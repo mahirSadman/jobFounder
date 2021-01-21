@@ -75,9 +75,11 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function dashboard($id)
+    public function dashboard()
     {
-        $user = User::find($id);
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+        }
         $companies = $user->companies;
         return view('User_dashboard', compact('user','companies'));
     }
