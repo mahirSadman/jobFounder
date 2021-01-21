@@ -13,6 +13,11 @@ class User extends Model
         'title', 'description'
       ];
 
+      public function notifications()
+      {
+        return $this->hasMany(Notification::class);
+      }
+
       public function companies(){
         return $this->belongsToMany(Company::class, "roles")
         ->withPivot(['role_type']);

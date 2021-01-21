@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -181,4 +182,13 @@ class UserController extends Controller
 
     }
     //auth ends
+    public function notifications(){
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+        }
+        $user_notifications= $user->notifications->sortByDesc('id');
+        return view('user_notification',compact('user_notifications'));
+
+    }
+
 }

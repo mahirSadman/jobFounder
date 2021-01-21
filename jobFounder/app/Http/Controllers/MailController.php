@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\Mail;
 class MailController extends Controller
 {
     public function sendMail(){
+        //  dd('mail sent');
         $details=[
             'title' => 'Job Founder',
             'body' => 'test mail'
         ];
-        Mail::to("kabinhasan99@gmail.com")->send(new CandidateStatusMail($details));
+        Mail::to("mahirpunna@gmail.com")->send(new CandidateStatusMail($details));
+       
     }
 }

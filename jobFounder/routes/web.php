@@ -6,7 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PostJobController;
 use App\Http\Controllers\SearchBotController;
 use App\Http\Controllers\RoleController;
-
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +34,7 @@ Route::get('/user_dashboard', function () {
 Route::get('/company', function () {
     return view('company_dashboard');
 });
-
+Route::get('/notifications',[UserController::class,('notifications')])->name('notifications');
 Route::get('/jobs_discover',[UserController::class,('jobDiscover')])->name('jobs.discover');
 Route::get('/jobs_applied',[SearchBotController::class,('jobsApplied')])->name('jobs.applied');
 
