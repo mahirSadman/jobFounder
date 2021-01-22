@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Models\User;
 use App\Models\Notification;
 use App\Models\Communication;
+use App\Models\PostJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -82,7 +84,20 @@ class UserController extends Controller
             $user=User::where('id','=',session('LoggedUser'))->first();
         }
         $companies = $user->companies;
-        return view('User_dashboard', compact('user','companies'));
+
+        $from = Carbon::now();
+        $to = Carbon::now()->addDays(30);  
+        $recentJobDeadlinesUnsorted= PostJob::whereBetween('deadline_date', [$from, $to])->get();
+        $recentJobDeadlines = $recentJobDeadlinesUnsorted->sortBy('deadline_date')->take(4);
+
+        $tranding_jobsUnsorted = DB::table('applied_jobs')
+                 ->join('post_jobs', 'applied_jobs.post_job_id', '=', 'post_jobs.id')
+                 ->select('post_job_id','job_title', DB::raw('count(*) as total'))
+                 ->groupBy('post_job_id', 'job_title')
+                 ->get();
+        $tranding_jobs=  $tranding_jobsUnsorted->sortByDesc('total');
+        return view('User_dashboard', compact('user','companies','recentJobDeadlines', 'tranding_jobs'));
+ 
     }
 
     public function show($id)
@@ -163,6 +178,7 @@ class UserController extends Controller
         if($user){
             if(Hash::check($request->password,$user->password)){
                 $request->session()->put('LoggedUser',$user->id);
+                $request->session()->put('LoggedUserName',$user->first_name);
                 return redirect('user_dashboard');
             }
             else{
@@ -184,7 +200,8 @@ class UserController extends Controller
     public function logout(){
         if(session()->has('LoggedUser')){
             session()->pull('LoggedUser');
-            return redirect('login');
+            session()->pull('LoggedUserName');
+            return redirect('/');
         }
 
     }
@@ -215,7 +232,7 @@ class UserController extends Controller
             if(session()->has('LoggedUser')){
                 $user=User::where('id','=',session('LoggedUser'))->first();
             }
-            $communication= new communication;
+            $communication= new Communication;
             $communication->user_id= $sender->id;
             $communication->sender_id= $user->id;
             $communication->topic= $request->topic;

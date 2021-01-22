@@ -61,17 +61,18 @@
         <section class="col-12 col-md-8">
           <div class="recentDeadlines">
             <h5 class="">Recent Deadlines</h5>
-            <div class="row" style="margin-top: 10px;margin-bottom: 20px;">
-              <div class="col-6 ">
+            <div class="row" style="margin-top: 10px;">
+            @foreach($recentJobDeadlines as $recentJobDeadline)
+              <div class="col-6 " style="margin-top:10px; margin-bottom:10px;">
                 <a href="jobs_view.html" >
                   <div class="card " >
                     <div class="row card-body">
                       <div class="col-8 ">
-                        <h6>#jobname</h6>
-                        <p>#company name</p>
+                        <h6>{{$recentJobDeadline->job_title}}</h6>
+                        <p>{{$recentJobDeadline->company->company_name}}</p>
                       </div>
                       <div class="col-4 text-center">
-                        <h3>3</h3>
+                        <h3 id="recent{{$recentJobDeadline->id}}"></h3>
                         <h6>days left</h6> 
                       </div>
                     </div>
@@ -80,65 +81,23 @@
                 <!-- Recent Deadlines job card -->
               </div>
               <!-- Recent Deadlines job card space -->
-              <div class="col-6 ">
-                <a href="jobs_view.html" >
-                  <div class="card " >
-                    <div class="row card-body">
-                      <div class="col-8 ">
-                        <h6>#jobname</h6>
-                        <p>#company name</p>
-                      </div>
-                      <div class="col-4 text-center">
-                        <h3>3</h3>
-                        <h6>days left</h6> 
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <!-- Recent Deadlines job card -->
-              </div>
-              <!-- Recent Deadlines job card space -->
+            @endforeach
             </div>
+            @foreach($recentJobDeadlines as $recentJobDeadline)
+            <script>
+              var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+              var firstDate = new Date();
+              var secondDateStr = "{{$recentJobDeadline->deadline_date}}";
+              var res = secondDateStr.split("-");
+              var year = parseInt(res[0], 10);
+              var mnth = parseInt(res[1], 10)-1;
+              var day = parseInt(res[2], 10);
+              var secondDate = new Date(year, mnth, day);
+              var diffDays = Math.round(Math.abs((secondDate - firstDate) / oneDay));
+              document.getElementById("recent{{$recentJobDeadline->id}}").innerHTML = diffDays;
+            </script>
+            @endforeach
             <!-- dashboard Recent Deadlines Jobs row1-->
-            <div class="row" style="margin-top: 20px;margin-bottom: 20px;">
-              <div class="col-6 ">
-                <a href="jobs_view.html" >
-                  <div class="card " >
-                    <div class="row card-body">
-                      <div class="col-8 ">
-                        <h6>#jobname</h6>
-                        <p>#company name</p>
-                      </div>
-                      <div class="col-4 text-center">
-                        <h3>3</h3>
-                        <h6>days left</h6> 
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <!-- Recent Deadlines job card -->
-              </div>
-              <!-- Recent Deadlines job card space -->
-              <div class="col-6 ">
-                <a href="jobs_view.html" >
-                  <div class="card " >
-                    <div class="row card-body">
-                      <div class="col-8 ">
-                        <h6>#jobname</h6>
-                        <p>#company name</p>
-                      </div>
-                      <div class="col-4 text-center">
-                        <h3>3</h3>
-                        <h6>days left</h6> 
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <!-- Recent Deadlines job card -->
-              </div>
-              <!-- Recent Deadlines job card space -->
-            </div>
-            <!-- dashboard Recent Deadlines Jobs row2-->  
             <hr>  
             <div class="row" style="margin-top: 20px;margin-bottom: 20px;">
               <div class="col-6 ">
@@ -185,52 +144,31 @@
           <div class="trandingJobs">
             <h5 class="">Tranding jobs</h5>
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-              <div class="carousel-inner ">
-                <div class="carousel-item active ">
-                  <div class="bg-warning d-block  w-100 d-flex justify-content-center" alt="First slide" >
-                    <div class="bg-transparent w-70"style="min-height: 300px;">
-                      <div class="card-body">
-                        <h3>#Job Name</h3>
-                        <h5>#Company Name</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni libero dignissimos velit, corrupti commodi ducimus eligendi temporibus molestias sit dolores. Amet consectetur, officia blanditiis sit iste asperiores natus saepe corrupti.</p>
-                        <button type="button" class="btn btn-success float-right">Apply Now</button>
+              <div class="carousel-inner bg-danger" >
+                @foreach($tranding_jobs as $tranding_job)
+                <div class="carousel-item" id="tranding{{$loop->index}}">
+                    <div class="bg-warning d-block  w-100 d-flex justify-content-center" alt="First slide" >
+                      <div class="bg-transparent w-70"style="height: 340px;">
+                        <div class="card-body">
+                          <h6>{{$loop->index +1}}th position</h6>
+                          <h3>{{$tranding_job->job_title}}</h3>
+                          <h5>Company name</h5>
+                          <h5>{{$tranding_job->total}} applied</h5>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni libero dignissimos velit, corrupti commodi ducimus eligendi temporibus molestias sit dolores. Amet consectetur, officia blanditiis sit iste asperiores natus saepe corrupti.</p>
+                          <button type="button" class="btn btn-success float-right">Apply Now</button>
+                        </div>
                       </div>
+                      <!-- tranding jobs card body-->
                     </div>
-                    <!-- tranding jobs card body-->
+                    <!-- tranding jobs card background -->
                   </div>
-                  <!-- tranding jobs card background -->
-                </div>
-                <!-- tranding jobs card -->
-                <div class="carousel-item">
-                  <div class="bg-danger d-block w-100 d-flex justify-content-center" alt="Second slide" >
-                    <div class="bg-transparent w-70"style="min-height: 300px;">
-                      <div class="card-body">
-                        <h3>#Job Name</h3>
-                        <h5>#Company Name</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni libero dignissimos velit, corrupti commodi ducimus eligendi temporibus molestias sit dolores. Amet consectetur, officia blanditiis sit iste asperiores natus saepe corrupti.</p>
-                        <button type="button" class="btn btn-success float-right">Apply Now</button>
-                      </div>
-                    </div>
-                    <!-- tranding jobs card body-->
-                  </div>
-                  <!-- tranding jobs card background -->
-                </div>
-                <!-- tranding jobs card -->
-                <div class="carousel-item">
-                  <div class="bg-info d-block w-100 d-flex justify-content-center" alt="Third slide" >
-                    <div class="bg-transparent w-70"style="min-height: 300px;">
-                      <div class="card-body">
-                        <h3>#Job Name</h3>
-                        <h5>#Company Name</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni libero dignissimos velit, corrupti commodi ducimus eligendi temporibus molestias sit dolores. Amet consectetur, officia blanditiis sit iste asperiores natus saepe corrupti.</p>
-                        <button type="button" class="btn btn-success float-right">Apply Now</button>
-                      </div>
-                    </div>
-                    <!-- tranding jobs card body-->
-                  </div>
-                  <!-- tranding jobs card background -->
-                </div>
-                <!-- tranding jobs card -->
+                  <!-- tranding jobs card -->
+                @endforeach
+                <script>
+                var firstTranding = document.getElementById("tranding0");
+                firstTranding.classList.add("active");
+                </script>
+                
               </div>
               <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -403,5 +341,4 @@
       </div>
       <!-- main row -->
     </main>
-
 @endsection 

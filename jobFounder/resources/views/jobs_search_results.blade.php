@@ -502,6 +502,7 @@
             </section>
             <!-- left section -->
             <section class="col-12 col-md-8">
+
               <div class="collapseList">
                 <div class="d-flex" id="headingThree">
                     <h3 class="collapsed mb-0 headerTextMiddle"data-toggle="collapse" data-target="#acceptedCollapseList" aria-expanded="false" aria-controls="acceptedCollapseList">

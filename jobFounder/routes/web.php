@@ -21,11 +21,12 @@ use App\Http\Controllers\MailController;
 Route::get('/', function () {
     return view('index');
 })->name('index');
+
 //auth starts
 Route::get('/login',[UserController::class,('login')])->name('auth.login');
 Route::post('/check',[UserController::class,('check')])->name('auth.check');
 Route::get('profile',[UserController::class,('profile')]);
-Route::get('logout',[UserController::class,('logout')])->name('auth.logout')->name('auth.logout');
+Route::get('logout',[UserController::class,('logout')])->name('auth.logout');
 //auth ends
 
 Route::get('/user_dashboard', function () {

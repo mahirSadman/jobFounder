@@ -14,4 +14,8 @@ class PostJob extends Model
         return $this->belongsToMany(User::class, "applied_jobs")
         ->withPivot(['id', 'accepted']);
     }
+
+    public function company(){
+        return $this->belongsTo(Company::class, 'company_id');
+      }
 }

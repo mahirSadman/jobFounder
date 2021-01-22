@@ -32,5 +32,15 @@ class User extends Model
         return $this->belongsToMany(PostJob::class, "applied_jobs")
         ->withPivot(['accepted']);
       }
+      public function acceptedJobs(){
+        return $this->belongsToMany(PostJob::class, "applied_jobs")
+        ->wherePivot('accepted','=', 'accepted')
+        ->withPivot(['accepted']);
+      }
+      public function waitedJobs(){
+        return $this->belongsToMany(PostJob::class, "applied_jobs")
+        ->wherePivot('accepted','=', 'waiting')
+        ->withPivot(['accepted']);
+      }
 
 }

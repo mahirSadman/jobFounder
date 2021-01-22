@@ -58,11 +58,13 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarProfileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-user nav-bar-icon" aria-hidden="true"></i>
-                  #User_name
+                  @if(Session::get('LoggedUserName'))
+                  {{Session::get('LoggedUserName')}}
+                  @endif
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarProfileDropdown">
                     <li><a class="dropdown-item" href="{{route('user_profile.edit')}}">Edit profile</a></li>
-                    <li><a class="dropdown-item" href="{{route('index')}}">Log out</a></li>
+                    <li><a class="dropdown-item" href="{{route('auth.logout')}}">Log out</a></li>
                 </ul>
               </li>
             </ul>
