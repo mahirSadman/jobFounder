@@ -13,7 +13,7 @@
                 <ul class="list-group list-group-flush">
                   @foreach ($user_notifications as $notification)
                     <li class="list-group-item">
-                        <a href="company_dashboard.html">
+                        <a href="{{route('jobs.applied')}}">
                         <div class="d-flex justify-content-between">
                             <p>{{$notification->notification}}</p>
                             <p class="companiesCompanyRole align-bottom">{{$notification->created_at}}</p>

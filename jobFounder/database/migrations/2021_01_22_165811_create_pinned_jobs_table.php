@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppliedJobsTable extends Migration
+class CreatePinnedJobsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateAppliedJobsTable extends Migration
      */
     public function up()
     {
-        Schema::create('applied_jobs', function (Blueprint $table) {
-            $table->id();
+        Schema::create('pinned_jobs', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('post_job_id')->unsigned()->index();
-            $table->integer('cv_type')->nullable();
-            $table->string('custom_cv')->nullable();
-            $table->string('interview_call')->nullable();
-            $table->string('accepted')->nullable();
-            $table->string('reject_reason')->nullable();
+
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('post_job_id')->references('id')->on('post_jobs')->onDelete('cascade');
@@ -35,6 +31,6 @@ class CreateAppliedJobsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('applied_jobs');
+        Schema::dropIfExists('pinned_jobs');
     }
 }

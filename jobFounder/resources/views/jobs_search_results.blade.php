@@ -3,33 +3,35 @@
     <main class="container">
         <div class="jobShowSlider">
             <div class="jobShowSliderBotInfoBox d-flex flex-row justify-content-between">
-                <h4 class="">Matched jobs (1/17)</h4>
+                <h4 class="">Total Matched Jobs ({{count($jobs)}})</h4>
                 <button type="button" class="btn btn-primary">Search again</button>
             </div>
             <!-- jobShowSliderBotInfoBox -->
             
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner ">
-                <div class="carousel-item active ">
+              @foreach ($jobs as  $job)
+                <div class="carousel-item " id="searchedJob{{$loop->index}}">
                   <div class="bg-warning d-block  w-100 d-flex justify-content-center" alt="First slide" >
                     <div class="bg-transparent w-70 jobShowBox d-flex flex-column"style="min-height: 400px;">
                       <div class="jobShowBoxP1P2">
+                      <p>Matched Job No: {{$loop->index +1}}</p>
                           <div class="jobShowBoxP1 d-flex flex-row justify-content-between">
                             <div class="companyInfo row">
                                 <div class="col-12 col-md-2 jobShowBoxLogoBox">
                                     <img src="assets/img/gp_logo.jpg" alt="" class=" jobShowBoxLogo">
                                 </div>
                                 <div class="col12 col-md-10">
-                                    <h4>#Job Name</h4>
-                                    <h6><i class="fa fa-at" aria-hidden="true"></i>#Company Name</h6>
-                                    <span><i class="fa fa-map-marker" aria-hidden="true"></i>#location</span>
+                                    <h4>{{$job->job_title}}</h4>
+                                    <h6><i class="fa fa-at" aria-hidden="true"></i> {{$job->company->company_name}}</h6>
+                                    <span><i class="fa fa-map-marker" aria-hidden="true"></i> {{$job->company->location}}</span>
                                     <br>
                                     <span><i class="fa fa-money" aria-hidden="true"></i>#salary</span>
                                 </div>
                             </div>
                             <!-- companyInfo -->
-                            <div class="pinShare">
-                                <a href=""><i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                            <div class="pinShare" style="z-index:10;">
+                                <a href="{{route('pin.job',$job->id)}}"><i class="fa fa-thumb-tack" aria-hidden="true"></i>
                                 </a> <br>
                                 <a href=""><i class="fa fa-share" aria-hidden="true"></i>
                                 </a>
@@ -79,7 +81,7 @@
                               <div class="mt-auto">
                                   <div class="infoJobslider d-flex justify-content-around">
                                     <div class="numApplied ">
-                                        <h5 class="text-center ">129</h5>
+                                        <h5 class="text-center ">{{$job->candidates->count()}}</h5>
                                         <p class="text-center">Candidates applied</p>
                                     </div>
                                     <div class="contactReceptionist text-center">
@@ -93,7 +95,7 @@
                                     </div>
                                     <div class="buttonsJobslider float-right">
                                         <button type="button" class="btn btn-outline-danger">Cancle</button>
-                                        <button type="button" class="btn btn-success btn-lg">Apply Now</button>
+                                        <a href="{{route('apply.job',$job->id)}}" class="btn btn-success btn-lg">Apply</a>
                                     </div>
                               </div>
                         </div>
@@ -106,200 +108,11 @@
                   <!-- tranding jobs card background -->
                 </div>
                 <!-- tranding jobs card -->
-                <div class="carousel-item">
-                  <div class="bg-danger d-block w-100 d-flex justify-content-center" alt="Second slide" >
-                    <div class="bg-transparent w-70 jobShowBox d-flex flex-column"style="min-height: 400px;">
-                        <div class="jobShowBoxP1P2">
-                            <div class="jobShowBoxP1 d-flex flex-row justify-content-between">
-                              <div class="companyInfo row">
-                                  <div class="col-12 col-md-2 jobShowBoxLogoBox">
-                                      <img src="assets/img/gp_logo.jpg" alt="" class=" jobShowBoxLogo">
-                                  </div>
-                                  <div class="col12 col-md-10">
-                                      <h4>#Job Name</h4>
-                                      <h6><i class="fa fa-at" aria-hidden="true"></i>#Company Name</h6>
-                                      <span><i class="fa fa-map-marker" aria-hidden="true"></i>#location</span>
-                                      <br>
-                                      <span><i class="fa fa-money" aria-hidden="true"></i>#salary</span>
-                                  </div>
-                              </div>
-                              <!-- companyInfo -->
-                              <div class="pinShare">
-                                  <a href=""><i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                  </a> <br>
-                                  <a href=""><i class="fa fa-share" aria-hidden="true"></i>
-                                  </a>
-                              </div>
-                              <!-- pinShare -->
-                            </div>
-                            <!-- jobShowBoxP1 -->
-                            <div class="jobShowBoxP2 ">
-                                <h6><b>Discription:</b></h6>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni libero dignissimos velit, corrupti commodi ducimus eligendi temporibus molestias sit dolores. Amet consectetur, officia blanditiis sit iste asperiores natus saepe corrupti. <a href="">read more</a> </p>
-                            </div>
-                            <!-- jobShowBoxP2 -->
-                        </div> 
-                        <!-- jobShowBoxP1P2 -->
-                        <div class="jobShowBoxP3 mt-auto row">
-                          <div class="matchingBars col-12 col-md-8">
-                              <h5>Requirment Matching: </h5>
-                              <div class="row">
-                                  <div class="col-md-3 col-sm-6">
-                                      <div class="circleProgress blue">
-                                          <span class="circleProgress-left">
-                                              <span class="circleProgress-bar"></span>
-                                          </span>
-                                          <span class="circleProgress-right">
-                                              <span class="circleProgress-bar"></span>
-                                          </span>
-                                          <div class="circleProgress-value">90%</div>
-                                      </div>
-                                      <h6 class="text-center">Your<br>requirments</h6 >
-                                  </div>
-                                  <div class="col-md-3 col-sm-6">
-                                      <div class="circleProgress blue">
-                                          <span class="circleProgress-left">
-                                              <span class="circleProgress-bar"></span>
-                                          </span>
-                                          <span class="circleProgress-right">
-                                              <span class="circleProgress-bar"></span>
-                                          </span>
-                                          <div class="circleProgress-value">75%</div>
-                                      </div>
-                                      <h6 class="text-center">Company<br>requirments</h6>
-                                  </div>
-                              </div>
-                          </div>
-                          <!-- matchingBars -->
-                          <div class="infoButtons col-12 col-md-4 d-flex flex-column">
-                                <div class="mt-auto">
-                                    <div class="infoJobslider d-flex justify-content-around">
-                                      <div class="numApplied ">
-                                          <h5 class="text-center ">129</h5>
-                                          <p class="text-center">Candidates applied</p>
-                                      </div>
-                                      <div class="contactReceptionist text-center">
-                                          <i class="fa fa-comment " aria-hidden="true"></i>
-                                          <p class="text-center">Contact Receptionist </p>
-                                      </div>
-                                      <div class="daysRemaining ">
-                                          <h5 class="text-center ">29</h5>
-                                          <p class="text-center">days remaining</p>
-                                      </div>
-                                      </div>
-                                      <div class="buttonsJobslider">
-                                          
-                                          <button type="button" class="btn btn-outline-danger">Cancle</button>
-                                          <button type="button" class="btn btn-success btn-lg">Apply Now</button>
-                                      </div>
-                                </div>
-                          </div>
-                          <!-- infoButtons -->
-                        </div>
-                        <!-- jobShowBoxP3 -->
-                      </div>
-                    <!-- tranding jobs card body-->
-                  </div>
-                  <!-- tranding jobs card background -->
-                </div>
-                <!-- tranding jobs card -->
-                <div class="carousel-item">
-                  <div class="bg-info d-block w-100 d-flex justify-content-center" alt="Third slide" >
-                    <div class="bg-transparent w-70 jobShowBox d-flex flex-column"style="min-height: 400px;">
-                        <div class="jobShowBoxP1P2">
-                            <div class="jobShowBoxP1 d-flex flex-row justify-content-between">
-                              <div class="companyInfo row">
-                                  <div class="col-12 col-md-2 jobShowBoxLogoBox">
-                                      <img src="assets/img/gp_logo.jpg" alt="" class=" jobShowBoxLogo">
-                                  </div>
-                                  <div class="col12 col-md-10">
-                                      <h4>#Job Name</h4>
-                                      <h6><i class="fa fa-at" aria-hidden="true"></i>#Company Name</h6>
-                                      <span><i class="fa fa-map-marker" aria-hidden="true"></i>#location</span>
-                                      <br>
-                                      <span><i class="fa fa-money" aria-hidden="true"></i>#salary</span>
-                                  </div>
-                              </div>
-                              <!-- companyInfo -->
-                              <div class="pinShare">
-                                  <a href=""><i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                  </a> <br>
-                                  <a href=""><i class="fa fa-share" aria-hidden="true"></i>
-                                  </a>
-                              </div>
-                              <!-- pinShare -->
-                            </div>
-                            <!-- jobShowBoxP1 -->
-                            <div class="jobShowBoxP2 ">
-                                <h6><b>Discription:</b></h6>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni libero dignissimos velit, corrupti commodi ducimus eligendi temporibus molestias sit dolores. Amet consectetur, officia blanditiis sit iste asperiores natus saepe corrupti. <a href="">read more</a> </p>
-                            </div>
-                            <!-- jobShowBoxP2 -->
-                        </div> 
-                        <!-- jobShowBoxP1P2 -->
-                        <div class="jobShowBoxP3 mt-auto row">
-                          <div class="matchingBars col-12 col-md-8">
-                              <h5>Requirment Matching: </h5>
-                              <div class="row">
-                                  <div class="col-md-3 col-sm-6">
-                                      <div class="circleProgress blue">
-                                          <span class="circleProgress-left">
-                                              <span class="circleProgress-bar"></span>
-                                          </span>
-                                          <span class="circleProgress-right">
-                                              <span class="circleProgress-bar"></span>
-                                          </span>
-                                          <div class="circleProgress-value">90%</div>
-                                      </div>
-                                      <h6 class="text-center">Your<br>requirments</h6 >
-                                  </div>
-                                  <div class="col-md-3 col-sm-6">
-                                      <div class="circleProgress blue">
-                                          <span class="circleProgress-left">
-                                              <span class="circleProgress-bar"></span>
-                                          </span>
-                                          <span class="circleProgress-right">
-                                              <span class="circleProgress-bar"></span>
-                                          </span>
-                                          <div class="circleProgress-value">75%</div>
-                                      </div>
-                                      <h6 class="text-center">Company<br>requirments</h6>
-                                  </div>
-                              </div>
-                          </div>
-                          <!-- matchingBars -->
-                          <div class="infoButtons col-12 col-md-4 d-flex flex-column">
-                                <div class="mt-auto">
-                                    <div class="infoJobslider d-flex justify-content-around">
-                                      <div class="numApplied ">
-                                          <h5 class="text-center ">129</h5>
-                                          <p class="text-center">Candidates applied</p>
-                                      </div>
-                                      <div class="contactReceptionist text-center">
-                                          <i class="fa fa-comment " aria-hidden="true"></i>
-                                          <p class="text-center">Contact Receptionist </p>
-                                      </div>
-                                      <div class="daysRemaining ">
-                                          <h5 class="text-center ">29</h5>
-                                          <p class="text-center">days remaining</p>
-                                      </div>
-                                      </div>
-                                      <div class="buttonsJobslider">
-                                          
-                                          <button type="button" class="btn btn-outline-danger">Cancle</button>
-                                          <button type="button" class="btn btn-success btn-lg">Apply Now</button>
-                                      </div>
-                                </div>
-                          </div>
-                          <!-- infoButtons -->
-                        </div>
-                        <!-- jobShowBoxP3 -->
-                      </div>
-                    <!-- tranding jobs card body-->
-                  </div>
-                  <!-- tranding jobs card background -->
-                </div>
-                <!-- tranding jobs card -->
+              @endforeach
+              <script>
+                var firstTranding = document.getElementById("searchedJob0");
+                firstTranding.classList.add("active");
+                </script>
               </div>
               <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

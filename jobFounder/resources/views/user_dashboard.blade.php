@@ -69,7 +69,7 @@
                     <div class="row card-body">
                       <div class="col-8 ">
                         <h6>{{$recentJobDeadline->job_title}}</h6>
-                        <p>{{$recentJobDeadline->company->company_name}}</p>
+                        <p><i class="fa fa-at" aria-hidden="true"></i> {{$recentJobDeadline->company->company_name}}</p>
                       </div>
                       <div class="col-4 text-center">
                         <h3 id="recent{{$recentJobDeadline->id}}"></h3>

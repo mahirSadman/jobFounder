@@ -138,7 +138,7 @@ class PostJobController extends Controller
         
         $candidate_job->accepted = "accepted";
         $candidate_job->save();
-        // return redirect()->route('post_job_view.show', [$candidate_job->post_job_id]);
+        return redirect()->route('post_job_view.show', [$candidate_job->post_job_id]);
     }
     public function candidate_wait(Request $request)
     {
@@ -148,6 +148,19 @@ class PostJobController extends Controller
         $candidate_job= AppliedJob::find($request->candidate_job_id);
         
         $candidate_job->accepted = "waiting";
+        $candidate_job->save();
+        return redirect()->route('post_job_view.show', [$candidate_job->post_job_id]);
+    }
+
+    public function candidate_reject(Request $request)
+    {
+        $validatedData= $request->validate([
+            'candidate_job_id' => 'required'
+        ]);
+        $candidate_job= AppliedJob::find($request->candidate_job_id);
+        
+        $candidate_job->accepted = "rejected";
+        $candidate_job->reject_reason = $request->reason;
         $candidate_job->save();
         return redirect()->route('post_job_view.show', [$candidate_job->post_job_id]);
     }

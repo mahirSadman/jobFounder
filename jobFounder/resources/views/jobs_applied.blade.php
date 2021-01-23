@@ -165,7 +165,34 @@
             </div>
             <hr>
             <!-- applied jobs -->
-
+            <div id="accordion4">
+                <div class="d-flex" id="headingThree4">
+                    <h5 class="collapsed mb-0 headerTextMiddle"data-toggle="collapse" data-target="#collapseThree4" aria-expanded="false" aria-controls="collapseThree4">
+                     Rejected Jobs ({{count($rejected_jobs)}})<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                    </h5>
+                </div>
+                <div id="collapseThree4" class="collapse" aria-labelledby="headingThree4" data-parent="#accordion4">
+                    <div class="card-body">
+                        <ol class="mx-5"> 
+                          @foreach($rejected_jobs as $rejected_job)
+                              <li>
+                                  <div class="row">
+                                      <div class="col-8">
+                                          <a class="text-primary font-weight-bold" href="#">{{$rejected_job->job_title}}</a>
+                                          <p> <b>Reason: </b>{{$rejected_job->pivot->reject_reason}}</p>
+                                      </div>
+                                      <div class="col-4">
+                                          <a class="btn btn-danger" href="#">Cancel</a>
+                                      </div>
+                                  </div>
+                              </li>
+                          @endforeach
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <!-- applied jobs -->
         </section>
         <!-- right section -->
       </div>

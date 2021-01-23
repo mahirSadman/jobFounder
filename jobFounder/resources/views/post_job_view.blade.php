@@ -486,9 +486,50 @@
                             @foreach($postJob->candidates as $candidate)
                                 <li>
                                     <div class="row">
-                                        <div class="col-8">
+                                        <div class="col-6">
                                             <a class="text-primary font-weight-bold" href="#">{{$candidate->first_name}}</a>
                                             <p>BSc in CSE</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#reject{{$candidate->id}}">
+                                            Reject
+                                            </button>
+                                            <div class="modal fade" id="reject{{$candidate->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Rejection Reason</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div> 
+                                                    <form action="{{route('candidate.reject')}}" method="POST">
+                                                    @csrf
+                                                        <div class="modal-body">
+                                                        <p><b>Rejecting:</b> {{$candidate->first_name}} {{$candidate->last_name}}<br>
+                                                        </p>
+                                                         
+                                                        <hr>
+                                                    
+                                                            <div class="form-group">
+                                                            <input type="hidden" name="candidate_job_id" value="{{$candidate->pivot->id}}">
+                                                            <p>
+                                                            Please write a short description why you are rejecting this candidate. Help him/her to improve himself/herself.<br><br>
+                                                            </p>
+                                                            <label for="reason">Reason:</label>
+                                                            <input type="test" class="form-control" name="reason" id="reason" aria-describedby="emailHelp" placeholder="Enter a reason">
+                                                            
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle Rejection</button>
+                                                        <button type="submit" class="btn btn-danger">Reject</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                </div>
+                                            </div> 
+                                            <!-- model end -->
                                         </div>
                                         <div class="col-2">
                                             <form action="{{route('candidate.wait')}}" method="POST">

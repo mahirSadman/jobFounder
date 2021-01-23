@@ -32,7 +32,7 @@
                   <li><a class="dropdown-item" href="{{route('jobs.discover')}}">Discover Jobs</a></li>
                   <li><a class="dropdown-item" href="{{route('jobs.discover')}}">Search Jobs</a></li>
                   <li><a class="dropdown-item" href="{{route('jobs.applied')}}">Applied Jobs</a></li>
-                  <li><a class="dropdown-item" href="{{route('jobs.apllied')}}">Pinned Jobs</a></li>
+                  <li><a class="dropdown-item" href="{{route('jobs.pinned')}}">Pinned Jobs</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">

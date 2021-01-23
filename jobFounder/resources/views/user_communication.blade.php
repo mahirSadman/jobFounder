@@ -45,8 +45,8 @@
                         </form>
                       </div>
                     </div>
-                  </div> 
             </div>
+            <!-- Modal -->
             <table class="table table-hover">
                 <thead>
                   <tr>
@@ -89,7 +89,7 @@
                                 <div class="form-group">
 
                                 <input type="hidden" name="send_to" value="{{$communication->sender->email}}">
-                                <label for="reply">Topic</label>
+                                <label for="topic">Topic</label>
                                 <input type="test" class="form-control" name="topic" id="topic" aria-describedby="emailHelp" placeholder="Enter topic">
                                 <label for="message">Type your reply</label>
                                 <input type="test" class="form-control" name="message" id="message" aria-describedby="emailHelp" placeholder="Enter reply">
@@ -107,11 +107,7 @@
                   @endforeach
                 </tbody>
                 <!-- Button trigger modal -->
-
-  
-  <!-- Modal -->
-
-              </table>
+            </table>
         </div>
       <!-- main row -->
     </main>

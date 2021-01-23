@@ -30,17 +30,29 @@ class CandidateStatusListener
      */
     public function handle(CandidateStatus $event)
     {
-        
-        $details=[
+        $notification = "Check your Applied job section.";
+        if($event->appliedJob->accepted == 'accepted'){
+            $details=[
             'title' => 'Job Founder',
             'body' => 'first mail from job status updated'
-        ];
-        Mail::to("mahir.sadman@northsouth.edu")->send(new CandidateStatusMail($details));
-
-
+            ];
+            Mail::to("mahir.sadman@northsouth.edu")
+            ->send(new CandidateStatusMail($details));
+            $notification = "Congratulations. Your propsal has been accepted.";
+        }
+        elseif($event->appliedJob->accepted == 'waiting'){
+            $notification = "Your propsal is in waiting list.";
+        }
+        elseif($event->appliedJob->accepted == 'rejected'){
+            $notification = "Sorry, Your propsal has been rejected.";
+        }
+        else{
+            $notification = "Check your Applied Job section.";
+        }
+        
         $notifi= new Notification;
         $notifi->user_id = $event->appliedJob->user_id;
-        $notifi->notification = "testing accept job with applicant id";
+        $notifi->notification = $notification;
         $notifi->save();
         // dd('mail sentddddddddddddd');
     }

@@ -78,6 +78,49 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
+
+    //auth starts
+    public function login(){
+        return view('index');
+    }
+    public function check(Request $request){
+        
+        $validatedData= $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6|max:12'
+        ]);
+        $user=User::where('email','=',$request->email)->first();
+        if($user){
+            if(Hash::check($request->password,$user->password)){
+                $request->session()->put('LoggedUser',$user->id);
+                $request->session()->put('LoggedUserName',$user->first_name);
+                return redirect('user_dashboard');
+            }
+            else{
+                return back()->with('fail','Incorrect password');
+            }
+        }
+        else{
+            return back()->with('fail','No account founded');
+        }
+    }
+    public function profile(){
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+           
+        }
+        return view('user_profile',compact('user'));
+    }
+
+    public function logout(){
+        if(session()->has('LoggedUser')){
+            session()->pull('LoggedUser');
+            session()->pull('LoggedUserName');
+            return redirect('/');
+        }
+
+    }
+    //auth ends
     public function dashboard()
     {
         if(session()->has('LoggedUser')){
@@ -164,48 +207,6 @@ class UserController extends Controller
         //
     }
 
-    //auth starts
-    public function login(){
-        return view('index');
-    }
-    public function check(Request $request){
-        
-        $validatedData= $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:6|max:12'
-        ]);
-        $user=User::where('email','=',$request->email)->first();
-        if($user){
-            if(Hash::check($request->password,$user->password)){
-                $request->session()->put('LoggedUser',$user->id);
-                $request->session()->put('LoggedUserName',$user->first_name);
-                return redirect('user_dashboard');
-            }
-            else{
-                return back()->with('fail','Incorrect password');
-            }
-        }
-        else{
-            return back()->with('fail','No account founded');
-        }
-    }
-    public function profile(){
-        if(session()->has('LoggedUser')){
-            $user=User::where('id','=',session('LoggedUser'))->first();
-           
-        }
-        return view('user_profile',compact('user'));
-    }
-
-    public function logout(){
-        if(session()->has('LoggedUser')){
-            session()->pull('LoggedUser');
-            session()->pull('LoggedUserName');
-            return redirect('/');
-        }
-
-    }
-    //auth ends
     public function notifications(){
         if(session()->has('LoggedUser')){
             $user=User::where('id','=',session('LoggedUser'))->first();
