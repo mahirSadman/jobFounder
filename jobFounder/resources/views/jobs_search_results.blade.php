@@ -84,13 +84,15 @@
                                         <h5 class="text-center ">{{$job->candidates->count()}}</h5>
                                         <p class="text-center">Candidates applied</p>
                                     </div>
-                                    <div class="contactReceptionist text-center">
-                                        <i class="fa fa-comment " aria-hidden="true"></i>
-                                        <p class="text-center">Contact Receptionist </p>
-                                    </div>
                                     <div class="daysRemaining ">
                                         <h5 class="text-center ">29</h5>
                                         <p class="text-center">days remaining</p>
+                                    </div>                                    
+                                    <div class="contactReceptionist text-center">
+                                    <button type="button" class="btn " style="background-color:transparent" data-toggle="modal" data-target="#comCommu{{$loop->index}}">
+                                        <i class="fa fa-comment " aria-hidden="true"></i>
+                                        <p class="text-center">Contact Receptionist </p>
+                                    </button>
                                     </div>
                                     </div>
                                     <div class="buttonsJobslider float-right">
@@ -108,6 +110,37 @@
                   <!-- tranding jobs card background -->
                 </div>
                 <!-- tranding jobs card -->
+                <div class="modal fade" id="comCommu{{$loop->index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Communication Box</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div> 
+                        <form action="{{route('company_communications.send')}}" method="POST">
+                          @csrf
+                            <div class="modal-body">
+                                <div class="form-group">
+                                <p>Company Name: {{$job->company->company_name}}</p>
+                                <hr>
+                                <input type="hidden" name="send_to" class="form-control" value='{{$job->company->id}}'>
+                                <label for="topic">Topic:</label>
+                                <input type="test" class="form-control" name="topic" id="topic" aria-describedby="emailHelp" placeholder="Enter topic">
+                                <label for="message">Type your message:</label>
+                                <input type="test" class="form-control" name="message" id="message" aria-describedby="emailHelp" placeholder="Enter reply">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+                <!-- communication card -->
               @endforeach
               <script>
                 var firstTranding = document.getElementById("searchedJob0");

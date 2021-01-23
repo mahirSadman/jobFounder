@@ -177,13 +177,11 @@
                           @foreach($rejected_jobs as $rejected_job)
                               <li>
                                   <div class="row">
-                                      <div class="col-8">
+                                      <div class="col-12">
                                           <a class="text-primary font-weight-bold" href="#">{{$rejected_job->job_title}}</a>
                                           <p> <b>Reason: </b>{{$rejected_job->pivot->reject_reason}}</p>
                                       </div>
-                                      <div class="col-4">
-                                          <a class="btn btn-danger" href="#">Cancel</a>
-                                      </div>
+                                      
                                   </div>
                               </li>
                           @endforeach

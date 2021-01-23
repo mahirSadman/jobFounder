@@ -37,6 +37,7 @@ Route::get('logout',[UserController::class,('logout')])->name('auth.logout');
 Route::get('/notifications',[UserController::class,('notifications')])->name('notifications');
 Route::get('/communications',[UserController::class,('communications')])->name('communications');
 Route::post('/communications_send',[UserController::class,('communications_send')])->name('communications.send');
+Route::post('/company_communications_send',[UserController::class,('company_communications_send')])->name('company_communications.send');
 Route::get('/jobs_discover',[UserController::class,('jobDiscover')])->name('jobs.discover');
 Route::get('/jobs_applied',[SearchBotController::class,('jobsApplied')])->name('jobs.applied');
 Route::get('/jobs_pinned',[SearchBotController::class,('jobsPinned')])->name('jobs.pinned');

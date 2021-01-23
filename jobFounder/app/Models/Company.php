@@ -18,4 +18,9 @@ class Company extends Model
         return $this->belongsToMany(User::class, "roles")
         ->withPivot(['role_type']);
     }
+
+    public function communications()
+    {
+      return $this->hasMany(CompanyCommunication::class);
+    }
 }

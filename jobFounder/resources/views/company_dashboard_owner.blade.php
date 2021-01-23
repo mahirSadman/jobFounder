@@ -1,6 +1,6 @@
 @extends ('layout.master')
 @section ('main')
-<main class="container" style="height: 1000px;">
+<main class="container" style="min-height: 1000px;">
       <div class="row " style="margin: 50px 0;" >
         <section class="col-12 col-md-4">
           <div class="card " >
@@ -33,6 +33,11 @@
             </div>
           </div>
           <!-- company profile edit -->
+          @if(Session::get('fail'))
+              <div class="alert alert-danger">
+                {{Session::get('fail')}}
+              </div>
+            @endif
           <div class="card" style="margin-top: 10px;">
             <div class="card-header d-flex justify-content-between" >
                 <h5 class="align-middle" style="margin-bottom: 0;margin-top: 5px;">Company Roles</h5>
@@ -290,6 +295,71 @@
           </div>
           <hr>
         <!-- new apllicants -->
+        <div class="companyCommunication">
+          <h5>Company Communication</h5>
+          <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Topic</th>
+                      <th scope="col">From</th>
+                      <th scope="col">Date</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($company->communications as $communication)
+                    <tr>
+                      <th scope="row">{{$communication->topic}}</th>
+                      <td>{{$communication->sender->first_name}}</td>                                    
+                      <td>{{$communication->created_at}}</td>                        
+                      <td>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{$communication->id}}">
+                          see & reply
+                      </button>
+                      </td>
+                    </tr>
+                    <div class="modal fade" id="{{$communication->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Communication Box</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div> 
+                          <form action="{{route('communications.send')}}" method="POST">
+                            @csrf
+                              <div class="modal-body">
+                              <p><b>From:</b> {{$communication->sender->first_name}} {{$communication->sender->last_name}}<br>
+                                  <b>topic:</b> {{$communication->topic}} <br>
+                                  <b>message:</b> <br> {{$communication->message}}<br>
+                              </p>
+                              <hr>
+                          
+                                  <div class="form-group">
+
+                                  <input type="hidden" name="send_to" value="{{$communication->sender->email}}">
+                                  <label for="topic">Topic</label>
+                                  <input type="test" class="form-control" name="topic" id="topic" aria-describedby="emailHelp" placeholder="Enter topic">
+                                  <label for="message">Type your reply</label>
+                                  <input type="test" class="form-control" name="message" id="message" aria-describedby="emailHelp" placeholder="Enter reply">
+                                  <small id="emailHelp" class="form-text text-muted">Dat vanga jobab diben vai...</small>
+                                  </div>
+                              </div>
+                              <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Reply</button>
+                              </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>                 
+                    @endforeach
+                  </tbody>
+                  <!-- Button trigger modal -->
+          </table>
+        </div>
+        <hr>
         <div>
           <h5>Incomplete info</h5>
           <a href="#" >

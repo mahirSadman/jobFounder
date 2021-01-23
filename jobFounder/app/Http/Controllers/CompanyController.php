@@ -74,9 +74,29 @@ class CompanyController extends Controller
      */
     public function dashboard($id)
     {
+        if(session()->has('LoggedUser')){
+            $user=User::where('id','=',session('LoggedUser'))->first();
+        }
         $company = Company::find($id);
+        $my_role= Role::where ('user_id', $user->id)
+                    ->where ('company_id', $company->id)
+                    ->select('role_type')
+                    ->first();
         $role_users = $company->users;
-        return view('company_dashboard', compact('company', 'role_users'));
+        if($my_role->role_type == 'Owner'){
+            return view('company_dashboard_owner', compact('company', 'role_users'));
+        }
+        elseif($my_role->role_type == 'Recruiter'){
+            return view('company_dashboard_recruiter', compact('company', 'role_users'));
+        }
+        elseif($my_role->role_type == 'Recieptionist'){
+            return view('company_dashboard_recieptionist', compact('company', 'role_users'));
+        }
+        else{
+            return 'You dont have any role in this company';
+        }
+
+        
     }
 
     public function show($id)

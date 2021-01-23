@@ -6,7 +6,7 @@
           <div class="card">
             <div class="card-header d-flex justify-content-between" >
                 <h5 class="align-middle" style="margin-bottom: 0;margin-top: 5px;">My Companies</h5>
-                <a href="company_create.html"class="btn btn-success">Create</a>
+                <a href="{{route('companycreate.create')}}"class="btn btn-success">Create</a>
             </div>
             <div class="card-body">
             <ul class="list-group list-group-flush">

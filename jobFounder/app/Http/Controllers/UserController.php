@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 use DB;
 use App\Models\User;
+use App\Models\Company;
 use App\Models\Notification;
 use App\Models\Communication;
+use App\Models\CompanyCommunication;
 use App\Models\PostJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -243,7 +245,33 @@ class UserController extends Controller
             return redirect('communications');
         }
         else{
-            return back()->with('fail','No account founded');
+            return back()->with('fail','No account found');
+        }
+        
+    }
+    
+    public function company_communications_send(Request $request){
+        $validatedData= $request->validate([
+            'send_to' => 'required',
+            'message' => 'required'
+        ]);
+        $sendTo=Company::find($request->send_to);
+        if($sendTo){
+            if(session()->has('LoggedUser')){
+                $user=User::where('id','=',session('LoggedUser'))->first();
+            }
+            $companyCommunication= new CompanyCommunication;
+            $companyCommunication->user_id= $user->id;
+            $companyCommunication->company_id= $sendTo->id;
+            $companyCommunication->topic= $request->topic;
+            $companyCommunication->message= $request->message;
+    
+            $companyCommunication->save();
+            return redirect('communications');
+
+        }
+        else{
+            return back()->with('fail','No company found');
         }
         
     }
